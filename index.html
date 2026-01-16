@@ -1,44 +1,49 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-    
+
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
+
     <title>Magrass Hortolândia | Emagrecimento e Estética de Elite</title>
-    
+
     <meta name="title" content="Magrass Hortolândia | Emagrecimento e Estética de Elite" />
-    <meta name="description" content="A maior rede de emagrecimento da América Latina em Hortolândia. Protocolos científicos para emagrecimento, Hidrolipo e Rejuvenescimento. Agende sua avaliação!" />
-    <meta name="keywords" content="emagrecimento hortolândia, clínica estética hortolândia, hidrolipo, magrass, rejuvenescimento, gordura localizada" />
+    <meta name="description" content="A maior rede de emagrecimento da América Latina em Hortolândia. Protocolos científicos para emagrecimento, Hidrolipo e Rejuvenescimento." />
+    <meta name="keywords" content="emagrecimento hortolândia, clínica estética hortolândia, hidrolipo, magrass" />
     <meta name="author" content="Magrass Hortolândia" />
     <meta name="robots" content="index, follow" />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://magrasshortolandia.com.br/" />
-    <meta property="og:title" content="Magrass Hortolândia | Transforme seu corpo e autoestima" />
-    <meta property="og:description" content="Resultados Reais com Ciência e Tecnologia. Conheça nossos protocolos exclusivos em Hortolândia." />
-    <meta property="og:image" content="/og-image.jpg" /> <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://magrasshortolandia.com.br/" />
-    <meta property="twitter:title" content="Magrass Hortolândia | Transforme seu corpo" />
-    <meta property="twitter:description" content="Protocolos científicos e personalizados para emagrecimento e bem-estar." />
-    <meta property="twitter:image" content="/og-image.jpg" />
+    <meta property="og:title" content="Magrass Hortolândia | Transforme seu corpo" />
+    <meta property="og:image" content="/og-image.jpg" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
+    <link 
+      rel="preload" 
+      fetchpriority="high" 
+      as="image" 
+      href="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop" 
+    />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" 
+      rel="stylesheet" 
+    />
+
     <meta name="theme-color" content="#131842" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
     <style>
-      /* Splash screen minimalista para evitar o flash branco antes do React carregar */
-      body {
-        margin: 0;
-        padding: 0;
-        background-color: #131842; /* Azul Magrass */
-      }
+      /* Splash screen otimizado: Usando hexadecimais puros para renderização ultra rápida */
+      body { margin: 0; padding: 0; background-color: #131842; }
       #root-loader {
         position: fixed;
         inset: 0;
@@ -47,14 +52,13 @@
         justify-content: center;
         background-color: #131842;
         z-index: 9999;
-        transition: opacity 0.5s ease-out;
       }
+      .loader-container { display: flex; gap: 8px; }
       .loader-dot {
         width: 12px;
         height: 12px;
-        background-color: #C5A059; /* Dourado Magrass */
+        background-color: #c5a059;
         border-radius: 50%;
-        margin: 0 5px;
         animation: pulse 1.5s infinite ease-in-out;
       }
       @keyframes pulse {
@@ -66,9 +70,11 @@
 
   <body>
     <div id="root-loader">
-      <div class="loader-dot" style="animation-delay: 0s"></div>
-      <div class="loader-dot" style="animation-delay: 0.2s"></div>
-      <div class="loader-dot" style="animation-delay: 0.4s"></div>
+      <div class="loader-container">
+        <div class="loader-dot" style="animation-delay: 0s"></div>
+        <div class="loader-dot" style="animation-delay: 0.2s"></div>
+        <div class="loader-dot" style="animation-delay: 0.4s"></div>
+      </div>
     </div>
 
     <div id="root"></div>
@@ -76,14 +82,25 @@
     <script type="module" src="/src/main.tsx"></script>
 
     <script>
-      // Remove o loader assim que o bundle principal for executado
-      window.addEventListener('load', () => {
-        const loader = document.getElementById('root-loader');
+      /**
+       * LÓGICA SÊNIOR DE REMOÇÃO DO LOADER
+       * Não esperamos o 'load' completo (que aguarda todas as imagens),
+       * mas sim um pequeno delay após o JS principal começar a montar o React.
+       */
+      const hideLoader = () => {
+        const loader = document.getElementById("root-loader");
         if (loader) {
-          loader.style.opacity = '0';
-          setTimeout(() => loader.remove(), 500);
+          loader.style.transition = "opacity 0.4s ease-out";
+          loader.style.opacity = "0";
+          setTimeout(() => loader.remove(), 400);
         }
-      });
+      };
+
+      // Se o React demorar muito, o load limpa. Se o React for rápido, ele pode chamar isso.
+      window.addEventListener("load", hideLoader);
+      
+      // Fallback de segurança para não prender o usuário se o JS falhar
+      setTimeout(hideLoader, 3500);
     </script>
   </body>
 </html>

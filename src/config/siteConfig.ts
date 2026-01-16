@@ -1,11 +1,14 @@
-// 1. Interfaces de Definição (O Contrato)
+// 1. Interfaces de Definição (Contrato Expandido)
 export interface Service {
   id: number;
   category: string;
   title: string;
   description: string;
   highlight: string;
-  icon: "scale" | "sparkles" | "heart" | "leaf" | "droplets" | "thermometer" | "wind" | "user" | "waves";
+  icon: "scale" | "sparkles" | "heart" | "leaf" | "droplets" | "thermometer" | "wind" | "user" | "waves" | "snowflake" | "Zap";
+  indications?: string; // Novo campo para UX Informativa
+  contraindications?: string; // Novo campo para Segurança
+  benefits?: string; // Novo campo para Conversão
   videoUrl?: string;
 }
 
@@ -76,7 +79,41 @@ export const CONFIG: SiteConfig = {
       description: "Protocolo exclusivo para eliminar gordura localizada através de tecnologia de alta potência. Indolor e sem cortes.",
       highlight: "Redução de medidas",
       icon: "droplets",
-      videoUrl: "https://www.instagram.com/reels/videos/2",
+    },
+    {
+      id: 9, // Novos Procedimentos
+      category: "Corpo",
+      title: "Criolipólise",
+      description: "Congelamento de células de gordura para eliminação natural pelo organismo. O padrão ouro para gordura localizada.",
+      highlight: "Elimina até 30% da gordura",
+      icon: "snowflake",
+    },
+    {
+      id: 10,
+      category: "Tecnologia",
+      title: "Terapia Combinada",
+      description: "Sinergia de ultra-som e correntes de média frequência para tratamento simultâneo de gordura e celulite.",
+      indications: "Gordura localizada, celulite, hidrolipoclasia.",
+      contraindications: "Gestantes, câncer, doenças autoimunes, próteses metálicas, hipertensão/diabetes descompensadas.",
+      benefits: "Lipólise induzida, permeação de ativos e melhora do contorno corporal.",
+      highlight: "Potência Máxima",
+      icon: "Zap",
+    },
+    {
+      id: 11,
+      category: "Corpo",
+      title: "Lipocavitação",
+      description: "Conhecida como a 'lipo sem cortes', utiliza ondas de ultrassom para romper as células de gordura.",
+      highlight: "Efeito Imediato",
+      icon: "waves",
+    },
+    {
+      id: 12,
+      category: "Corpo",
+      title: "Endermologia",
+      description: "Massagem profunda por vácuo-sucção que desfaz nódulos de gordura e ativa o sistema linfático.",
+      highlight: "Combate à Celulite",
+      icon: "wind",
     },
     {
       id: 3,
@@ -85,7 +122,6 @@ export const CONFIG: SiteConfig = {
       description: "Uso de infravermelho longo para acelerar o metabolismo basal e promover a queima calórica.",
       highlight: "Detox e Queima Calórica",
       icon: "thermometer",
-      videoUrl: "https://www.instagram.com/reels/videos/3",
     },
     {
       id: 4,
@@ -94,7 +130,6 @@ export const CONFIG: SiteConfig = {
       description: "Infusão de CO2 medicinal que melhora a circulação e combate gordura localizada e celulite.",
       highlight: "Melhora da Textura",
       icon: "wind",
-      videoUrl: "https://www.instagram.com/reels/videos/4",
     },
     {
       id: 5,
@@ -103,16 +138,6 @@ export const CONFIG: SiteConfig = {
       description: "Radiofrequência que estimula o colágeno, reduzindo rugas, linhas de expressão e flacidez.",
       highlight: "Efeito Lifting Natural",
       icon: "sparkles",
-      videoUrl: "https://www.instagram.com/reels/videos/5",
-    },
-    {
-      id: 6,
-      category: "Rosto",
-      title: "Limpeza de Pele Premium",
-      description: "Higienização profunda e hidratação para uma pele luminosa e renovada.",
-      highlight: "Pele Impecável",
-      icon: "user",
-      videoUrl: "https://www.instagram.com/reels/videos/6",
     },
     {
       id: 7,
@@ -121,16 +146,6 @@ export const CONFIG: SiteConfig = {
       description: "Técnica que elimina o excesso de líquidos, toxinas e reduz o inchaço corporal.",
       highlight: "Fim da Retenção",
       icon: "waves",
-      videoUrl: "https://www.instagram.com/reels/videos/7",
-    },
-    {
-      id: 8,
-      category: "Bem-estar",
-      title: "Massagem Relaxante",
-      description: "Alívio de tensões e redução do estresse para equilíbrio entre corpo e mente.",
-      highlight: "Bem-estar Total",
-      icon: "heart",
-      videoUrl: "https://www.instagram.com/reels/videos/8",
     }
   ],
 
@@ -159,7 +174,6 @@ export const CONFIG: SiteConfig = {
   },
 };
 
-// 3. Helper de WhatsApp (Sempre usa o telefone da CONFIG)
 export const getWhatsAppLink = (message?: string) => {
   const defaultMessage = "Olá! Gostaria de conhecer os protocolos da Magrass Hortolândia.";
   const encodedMessage = encodeURIComponent(message || defaultMessage);
