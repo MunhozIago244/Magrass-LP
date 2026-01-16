@@ -4,18 +4,20 @@ import imagemin from 'vite-plugin-imagemin';
 import path from 'path';
 import { visualizer } from 'rollup-plugin-visualizer';
 
-// Definimos uma interface para o plugin de imagem para evitar o 'any' do ESLint
-interface ImageminOptions {
-  gifsicle?: { optimizationLevel?: number };
-  optipng?: { optimizationLevel?: number };
-  mozjpeg?: { quality?: number };
-  pngquant?: { quality?: [number, number]; speed?: number };
-  svgo?: { plugins?: Array<{ name: string; active?: boolean }> };
-}
-
+// CORREÇÃO SÊNIOR: O plugin imagemin é exportado de forma inconsistente entre ambientes.
+// Fazemos uma verificação robusta para garantir que pegamos a função correta.
 const getImageminPlugin = () => {
-  const plugin = (imagemin as unknown as (options: ImageminOptions) => PluginOption);
-  return plugin;
+  if (!imagemin) return null;
+  
+  // Tenta várias formas de exportação comuns em pacotes legados
+  const fn = (imagemin as any).default || imagemin;
+  
+  if (typeof fn !== 'function') {
+    // Se ainda não for uma função, pode estar dentro de outro nível (comum no ambiente Vercel)
+    return (fn as any).default || fn;
+  }
+  
+  return fn;
 };
 
 export default defineConfig(({ mode }): UserConfig => {
@@ -25,7 +27,8 @@ export default defineConfig(({ mode }): UserConfig => {
   return {
     plugins: [
       react(),
-      isProd && imageminPlugin({
+      // Mudança técnica: Verificamos se imageminPlugin é de fato uma função antes de chamar
+      isProd && typeof imageminPlugin === 'function' && imageminPlugin({
         gifsicle: { optimizationLevel: 7 },
         optipng: { optimizationLevel: 7 },
         mozjpeg: { quality: 80 },
@@ -48,8 +51,6 @@ export default defineConfig(({ mode }): UserConfig => {
 
     build: {
       minify: 'terser',
-      // Correção do Erro 2769: O Vite espera TerserOptions diretamente 
-      // e não um objeto aninhado incorretamente.
       terserOptions: {
         compress: {
           drop_console: true,
