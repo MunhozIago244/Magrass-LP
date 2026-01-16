@@ -142,70 +142,59 @@ export default defineConfig(({ mode }) => {
 });
 
 // ============================================================
-// ESTRATÉGIA DE CHUNKS
+// ESTRATÉGIA DE CHUNKS (CORRIGIDA)
 // ============================================================
 function createManualChunks() {
-  // Mapa de dependências -> nome do chunk
-  const vendorChunks: Record<string, string[]> = {
-    // Core React (sempre junto para evitar circular deps)
-    "vendor-react": [
-      "react",
-      "react-dom",
-      "react-router-dom",
-      "scheduler",
-    ],
-
-    // UI Components (Radix, etc)
-    "vendor-ui": [
-      "@radix-ui",
-      "class-variance-authority",
-      "clsx",
-      "tailwind-merge",
-    ],
-
-    // Ícones (geralmente grande)
-    "vendor-icons": [
-      "lucide-react",
-    ],
-
-    // Animações
-    "vendor-motion": [
-      "framer-motion",
-    ],
-
-    // Data fetching
-    "vendor-query": [
-      "@tanstack/react-query",
-      "axios",
-    ],
-
-    // Formulários
-    "vendor-forms": [
-      "react-hook-form",
-      "@hookform/resolvers",
-      "zod",
-    ],
-
-    // Utilitários
-    "vendor-utils": [
-      "date-fns",
-      "lodash",
-      "clsx",
-    ],
-  };
-
   return (id: string) => {
     if (!id.includes("node_modules")) return;
 
-    // Procura match nas dependências mapeadas
-    for (const [chunkName, deps] of Object.entries(vendorChunks)) {
-      if (deps.some((dep) => id.includes(`node_modules/${dep}`) || id.includes(`node_modules/@${dep}`))) {
-        return chunkName;
-      }
+    // React DEVE ficar junto (core absoluto)
+    if (
+      id.includes("/react@") ||
+      id.includes("/react-dom@") ||
+      id.includes("/scheduler@") ||
+      id.includes("node_modules/react/") ||
+      id.includes("node_modules/react-dom/")
+    ) {
+      return "vendor-react";
     }
 
-    // Fallback: outras dependências
-    return "vendor-misc";
+    // React Router (depende do React, mas pode separar)
+    if (id.includes("react-router") || id.includes("@remix-run")) {
+      return "vendor-router";
+    }
+
+    // Radix UI
+    if (id.includes("@radix-ui")) {
+      return "vendor-radix";
+    }
+
+    // Ícones
+    if (id.includes("lucide-react")) {
+      return "vendor-icons";
+    }
+
+    // Animações
+    if (id.includes("framer-motion")) {
+      return "vendor-motion";
+    }
+
+    // TanStack Query
+    if (id.includes("@tanstack")) {
+      return "vendor-query";
+    }
+
+    // Formulários
+    if (
+      id.includes("react-hook-form") ||
+      id.includes("@hookform") ||
+      id.includes("/zod@")
+    ) {
+      return "vendor-forms";
+    }
+
+    // NÃO criar vendor-misc genérico - deixa o Vite decidir
+    // return "vendor-misc"; // ❌ REMOVA ISSO
   };
 }
 
