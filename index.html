@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    
+    <title>Magrass Hortolândia | Emagrecimento e Estética de Elite</title>
+    
+    <meta name="title" content="Magrass Hortolândia | Emagrecimento e Estética de Elite" />
+    <meta name="description" content="A maior rede de emagrecimento da América Latina em Hortolândia. Protocolos científicos para emagrecimento, Hidrolipo e Rejuvenescimento. Agende sua avaliação!" />
+    <meta name="keywords" content="emagrecimento hortolândia, clínica estética hortolândia, hidrolipo, magrass, rejuvenescimento, gordura localizada" />
+    <meta name="author" content="Magrass Hortolândia" />
+    <meta name="robots" content="index, follow" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://magrasshortolandia.com.br/" />
+    <meta property="og:title" content="Magrass Hortolândia | Transforme seu corpo e autoestima" />
+    <meta property="og:description" content="Resultados Reais com Ciência e Tecnologia. Conheça nossos protocolos exclusivos em Hortolândia." />
+    <meta property="og:image" content="/og-image.jpg" /> <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://magrasshortolandia.com.br/" />
+    <meta property="twitter:title" content="Magrass Hortolândia | Transforme seu corpo" />
+    <meta property="twitter:description" content="Protocolos científicos e personalizados para emagrecimento e bem-estar." />
+    <meta property="twitter:image" content="/og-image.jpg" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <meta name="theme-color" content="#131842" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <style>
+      /* Splash screen minimalista para evitar o flash branco antes do React carregar */
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #131842; /* Azul Magrass */
+      }
+      #root-loader {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #131842;
+        z-index: 9999;
+        transition: opacity 0.5s ease-out;
+      }
+      .loader-dot {
+        width: 12px;
+        height: 12px;
+        background-color: #C5A059; /* Dourado Magrass */
+        border-radius: 50%;
+        margin: 0 5px;
+        animation: pulse 1.5s infinite ease-in-out;
+      }
+      @keyframes pulse {
+        0%, 100% { transform: scale(0.3); opacity: 0.2; }
+        50% { transform: scale(1.2); opacity: 1; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root-loader">
+      <div class="loader-dot" style="animation-delay: 0s"></div>
+      <div class="loader-dot" style="animation-delay: 0.2s"></div>
+      <div class="loader-dot" style="animation-delay: 0.4s"></div>
+    </div>
+
+    <div id="root"></div>
+
+    <script type="module" src="/src/main.tsx"></script>
+
+    <script>
+      // Remove o loader assim que o bundle principal for executado
+      window.addEventListener('load', () => {
+        const loader = document.getElementById('root-loader');
+        if (loader) {
+          loader.style.opacity = '0';
+          setTimeout(() => loader.remove(), 500);
+        }
+      });
+    </script>
+  </body>
+</html>

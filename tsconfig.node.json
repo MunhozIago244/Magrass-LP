@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true,
+    /* Correção do erro: Substituído ES2023 por ESNext para compatibilidade total */
+    "lib": ["ESNext"],
+    "strict": true,
+    /* Garante consistência de nomes entre Windows e servidores Linux */
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["vite.config.ts"]
+}

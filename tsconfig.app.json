@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "tsBuildInfoFile": "./node_modules/.cache/tsconfig.app.tsbuildinfo",
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting - AQUI ESTÃO AS CORREÇÕES SOLICITADAS */
+    "strict": true,                                     /* Resolve o erro 1: Ativa checagem rigorosa de tipos */
+    "forceConsistentCasingInFileNames": true,            /* Resolve o erro 2: Evita erros entre Windows e Linux */
+    "noUnusedLocals": true,                             /* Erro se houver variáveis não usadas */
+    "noUnusedParameters": true,                         /* Erro se houver parâmetros não usados */
+    "noFallthroughCasesInSwitch": true,                 /* Segurança em estruturas switch */
+    "noImplicitAny": true,                              /* Proíbe o uso de 'any' implícito */
+    "strictNullChecks": true,                           /* Garante que você trate nulos/undefined */
+
+    /* Path Aliases */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src"]
+}

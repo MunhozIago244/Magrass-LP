@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    /* Regras de Rigor Intelectual do Código */
+    "strict": true,                                /* Resolve o erro de severidade 8 */
+    "forceConsistentCasingInFileNames": true,      /* Mantém a consistência entre SOs */
+    "skipLibCheck": true,                          /* Performance: pula checagem de tipos de bibliotecas node_modules */
+    
+    /* Configurações de Ambiente */
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    
+    /* Path Aliases (Base para o VS Code entender os caminhos) */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+}
