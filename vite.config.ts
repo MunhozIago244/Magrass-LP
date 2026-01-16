@@ -4,20 +4,21 @@ import imagemin from 'vite-plugin-imagemin';
 import path from 'path';
 import { visualizer } from 'rollup-plugin-visualizer';
 
-// CORREÇÃO SÊNIOR: O plugin imagemin é exportado de forma inconsistente entre ambientes.
-// Fazemos uma verificação robusta para garantir que pegamos a função correta.
+interface ImageminOptions {
+  gifsicle?: { optimizationLevel?: number };
+  optipng?: { optimizationLevel?: number };
+  mozjpeg?: { quality?: number };
+  pngquant?: { quality?: [number, number]; speed?: number };
+  svgo?: { plugins?: Array<{ name: string; active?: boolean }> };
+}
+
 const getImageminPlugin = () => {
   if (!imagemin) return null;
-  
-  // Tenta várias formas de exportação comuns em pacotes legados
-  const fn = (imagemin as any).default || imagemin;
-  
-  if (typeof fn !== 'function') {
-    // Se ainda não for uma função, pode estar dentro de outro nível (comum no ambiente Vercel)
-    return (fn as any).default || fn;
-  }
-  
-  return fn;
+  const untypedImagemin = imagemin as unknown;
+  const fn = (
+    (untypedImagemin as { default?: object }).default || untypedImagemin
+  ) as (options: ImageminOptions) => PluginOption;
+  return typeof fn === 'function' ? fn : null;
 };
 
 export default defineConfig(({ mode }): UserConfig => {
@@ -27,8 +28,7 @@ export default defineConfig(({ mode }): UserConfig => {
   return {
     plugins: [
       react(),
-      // Mudança técnica: Verificamos se imageminPlugin é de fato uma função antes de chamar
-      isProd && typeof imageminPlugin === 'function' && imageminPlugin({
+      isProd && imageminPlugin && imageminPlugin({
         gifsicle: { optimizationLevel: 7 },
         optipng: { optimizationLevel: 7 },
         mozjpeg: { quality: 80 },
@@ -57,19 +57,28 @@ export default defineConfig(({ mode }): UserConfig => {
           drop_debugger: true,
           pure_funcs: ['console.info', 'console.debug'],
         },
-        output: {
+        // CORREÇÃO DO ERRO TERSER: Terser v5+ prefere 'format' em vez de 'output'
+        format: {
           comments: false,
         },
       },
       target: 'esnext',
       rollupOptions: {
         output: {
+          // CORREÇÃO DA CIRCULARIDADE: Simplificamos a separação.
+          // O erro ocorreu porque bibliotecas em 'vendor-libs' dependiam do core e vice-versa.
           manualChunks(id) {
             if (id.includes('node_modules')) {
-              if (id.includes('react')) return 'vendor-core';
+              // Agrupamos o core e libs fundamentais em um único chunk robusto
+              if (id.includes('react') || id.includes('scheduler') || id.includes('object-assign')) {
+                return 'vendor-core';
+              }
+              // Ícones e Animações costumam ser independentes
               if (id.includes('lucide-react')) return 'vendor-ui-icons';
               if (id.includes('framer-motion')) return 'vendor-ui-animation';
-              return 'vendor-libs';
+              
+              // Tudo mais que for dependência externa
+              return 'vendor-utils';
             }
           }
         }
