@@ -1,146 +1,312 @@
-import { motion } from "framer-motion";
+"use client";
+
+import { memo } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { CONFIG, getWhatsAppLink } from "@/config/siteConfig";
-import { MessageCircle, Star, ShieldCheck, ArrowRight, Trophy, Weight } from "lucide-react";
+import { MessageCircle, Star, ShieldCheck, ArrowRight, Trophy, Sparkles } from "lucide-react";
 import { AnimatedTextGenerate } from "@/components/ui/animated-text-generate";
 
 const HeroSection = () => {
   const { hero } = CONFIG;
+  const shouldReduceMotion = useReducedMotion() ?? false;
 
   return (
-    <section className="relative min-h-[95vh] flex items-center justify-center overflow-hidden bg-[#131842]">
-      {/* 1. Background Layer com Otimização de LCP */}
+    <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0d0f2e] via-[#131842] to-[#1a1d4a]">
+      
+      {/* Background com overlay aprimorado */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#131842]/95 via-[#131842]/80 to-[#131842] z-10" />
-        <motion.img
-          initial={{ scale: 1.1, opacity: 0 }}
-          animate={{ scale: 1, opacity: 0.6 }} // Opacidade controlada para legibilidade do texto
-          transition={{ duration: 1.5, ease: "easeOut" }}
-          src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop"
-          alt="Resultados Reais Magrass Hortolândia"
-          fetchPriority="high" // Prioridade máxima para o navegador
-          className="w-full h-full object-cover"
+        <div className="absolute inset-0 bg-gradient-to-b from-[#131842]/98 via-[#131842]/90 to-[#131842]/95 z-10" />
+        <motion.div
+          initial={shouldReduceMotion ? { opacity: 0.5 } : { scale: 1.15, opacity: 0 }}
+          animate={{ scale: 1, opacity: 0.5 }}
+          transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
+          className="w-full h-full"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop"
+            alt="Magrass Hortolândia - Ambiente Premium"
+            fetchPriority="high"
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
+      </div>
+
+      {/* Luzes de Ambientação Duplas */}
+      <div className="absolute inset-0 z-10 pointer-events-none" aria-hidden="true">
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.15, 0.25, 0.15] 
+          }}
+          transition={{ 
+            duration: 8, 
+            repeat: Infinity,
+            ease: "easeInOut" 
+          }}
+          className="absolute top-1/4 -left-20 w-72 sm:w-[32rem] h-72 sm:h-[32rem] bg-[#C5A059]/20 rounded-full blur-[120px]" 
+        />
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.15, 1],
+            opacity: [0.1, 0.2, 0.1] 
+          }}
+          transition={{ 
+            duration: 10, 
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+          className="absolute bottom-1/4 -right-20 w-64 sm:w-96 h-64 sm:h-96 bg-[#C5A059]/15 rounded-full blur-[100px]" 
         />
       </div>
 
-      {/* 2. Partículas e Ambient Light */}
-      <div className="absolute inset-0 z-10 pointer-events-none" aria-hidden="true">
-        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#C5A059]/20 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-0 -right-20 w-[500px] h-[500px] bg-[#C5A059]/10 rounded-full blur-[150px]" />
-      </div>
+      {/* Grid Pattern Sutil */}
+      <div 
+        className="absolute inset-0 z-10 opacity-[0.015]" 
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(197, 160, 89, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(197, 160, 89, 0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: '50px 50px'
+        }}
+        aria-hidden="true"
+      />
 
-      <div className="container relative z-20 px-6 py-20">
-        <div className="flex flex-col items-center text-center">
+      <div className="container relative z-20 px-4 sm:px-6 lg:px-8 py-12 sm:py-16 flex flex-col items-center justify-center min-h-[100dvh]">
+        <div className="flex flex-col items-center text-center w-full max-w-7xl mx-auto">
           
-          {/* Badge: Ranking Nacional */}
+          {/* Badge Superior Premium */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="flex items-center gap-3 px-6 py-2.5 mb-10 rounded-full border border-[#C5A059]/40 bg-[#C5A059]/10 backdrop-blur-xl shadow-[0_0_20px_rgba(197,160,89,0.1)]"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="group relative flex items-center gap-2.5 px-6 py-3 mb-8 sm:mb-12 rounded-full border border-[#C5A059]/40 bg-gradient-to-r from-[#C5A059]/10 via-[#C5A059]/5 to-[#C5A059]/10 backdrop-blur-xl min-h-[44px] overflow-hidden"
           >
-            <Trophy className="w-4 h-4 text-[#C5A059]" />
-            <span className="text-[10px] md:text-xs font-black text-[#C5A059] uppercase tracking-[0.3em]">
-              27x Destaque Nacional na Rede Magrass
+            {/* Shimmer Effect */}
+            <motion.div
+              animate={{ x: ['-100%', '200%'] }}
+              transition={{ 
+                duration: 3, 
+                repeat: Infinity, 
+                ease: "linear",
+                repeatDelay: 2 
+              }}
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+            />
+            
+            <Trophy className="w-5 h-5 text-[#C5A059] relative z-10" aria-hidden="true" />
+            <span className="text-[11px] sm:text-xs font-bold text-[#C5A059] uppercase tracking-[0.25em] relative z-10">
+              27x Destaque Nacional Magrass
             </span>
+            <Sparkles className="w-4 h-4 text-[#C5A059]/60 relative z-10" aria-hidden="true" />
           </motion.div>
 
-          {/* Headline Monumental */}
+          {/* Headline com Tipografia Otimizada */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-serif text-5xl md:text-7xl lg:text-8xl text-white leading-[1.1] mb-8 tracking-tight"
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="font-serif text-[clamp(2.5rem,7.5vw,5.5rem)] leading-[1.05] text-white mb-6 sm:mb-10 tracking-[-0.02em] max-w-[18ch] sm:max-w-none px-2 sm:px-0"
           >
-            {hero.headline} <br />
-            <span className="text-[#C5A059] italic relative inline-block">
-              {hero.headlineHighlight}
-              {/* Underline Animado */}
+            {hero.headline}
+            <br className="hidden sm:block" />
+            <span className="relative inline-block mt-2 sm:mt-3">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C5A059] via-[#d4b068] to-[#C5A059] italic font-bold">
+                {hero.headlineHighlight}
+              </span>
+              
+              {/* Underline Animado Refinado */}
               <motion.svg
                 viewBox="0 0 300 20"
-                className="absolute -bottom-4 left-0 w-full h-5 text-[#C5A059]/50"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 1.2, delay: 1, ease: "easeInOut" }}
+                className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-2 sm:h-4"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 1.2, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                aria-hidden="true"
               >
-                <path d="M10 15 Q 150 5 290 15" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+                <defs>
+                  <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#C5A059" stopOpacity="0.3" />
+                    <stop offset="50%" stopColor="#C5A059" stopOpacity="0.6" />
+                    <stop offset="100%" stopColor="#C5A059" stopOpacity="0.3" />
+                  </linearGradient>
+                </defs>
+                <path 
+                  d="M5 12 Q 150 6 295 12" 
+                  fill="none" 
+                  stroke="url(#goldGradient)" 
+                  strokeWidth="3" 
+                  strokeLinecap="round" 
+                />
               </motion.svg>
             </span>
           </motion.h1>
 
-          {/* Subheadline Otimizada */}
-          <div className="max-w-3xl mx-auto mb-14">
+          {/* Subheadline com Contraste Melhorado */}
+          <div className="max-w-xl md:max-w-3xl mx-auto mb-12 sm:mb-16 px-4 sm:px-0">
             <AnimatedTextGenerate
               text={hero.subheadline}
               className="text-center"
-              textClassName="text-slate-200 text-lg md:text-xl font-light leading-relaxed"
+              textClassName="text-slate-300/90 text-base sm:text-lg md:text-xl lg:text-2xl font-light leading-relaxed tracking-wide"
               highlightWords={["ciência", "tecnologia", "personalizado", "autoestima"]}
               highlightClassName="text-[#C5A059] font-semibold"
             />
           </div>
 
-          {/* Call to Action Sênior */}
+          {/* CTA Premium com Estados Visuais */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2 }}
+            transition={{ delay: 0.9, duration: 0.6 }}
+            className="w-full sm:w-auto px-4 sm:px-0 mb-2"
           >
             <a
               href={getWhatsAppLink("Olá! Desejo iniciar minha transformação com a Magrass.")}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-4 px-12 py-7 bg-[#C5A059] text-white rounded-full font-bold text-xl shadow-[0_20px_50px_rgba(197,160,89,0.4)] hover:shadow-[0_25px_60px_rgba(197,160,89,0.6)] transition-all duration-500 hover:-translate-y-2"
+              className="group relative inline-flex items-center justify-center gap-3 w-full sm:w-auto px-10 sm:px-16 py-5 sm:py-7 bg-gradient-to-r from-[#C5A059] to-[#d4b068] text-white rounded-full font-bold text-base sm:text-xl shadow-[0_20px_60px_rgba(197,160,89,0.4)] hover:shadow-[0_30px_80px_rgba(197,160,89,0.6)] transition-all duration-500 hover:-translate-y-1.5 active:scale-[0.98] overflow-hidden min-h-[60px] sm:min-h-[72px]"
             >
-              <MessageCircle className="w-7 h-7 fill-white/10 group-hover:rotate-12 transition-transform" />
-              <span className="tracking-tighter">{hero.cta.toUpperCase()}</span>
-              <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
+              {/* Shine Effect no Hover */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+              </div>
+              
+              <MessageCircle 
+                className="w-6 h-6 sm:w-7 sm:h-7 relative z-10 group-hover:rotate-12 transition-transform duration-300" 
+                aria-hidden="true" 
+              />
+              <span className="tracking-tight uppercase relative z-10 font-black">
+                {hero.cta}
+              </span>
+              <ArrowRight 
+                className="w-5 h-5 sm:w-6 sm:h-6 relative z-10 group-hover:translate-x-2 transition-transform duration-300" 
+                aria-hidden="true" 
+              />
             </a>
           </motion.div>
 
-          {/* Trust Bar Premium com +12 Toneladas */}
-          <motion.div
+          {/* Texto auxiliar do CTA */}
+          <motion.p
             initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 1.8 }}
-            className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-20 items-center justify-center border-t border-white/5 pt-12"
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2 }}
+            className="text-slate-400 text-xs sm:text-sm mb-16 sm:mb-20"
           >
-            {/* KPI 1: Peso Eliminado */}
-            <div className="flex flex-col items-center group">
-              <div className="flex items-center gap-3 mb-1">
-                <Weight className="text-[#C5A059] w-6 h-6 group-hover:scale-110 transition-transform" />
-                <p className="text-white font-serif text-3xl font-bold">+12 Toneladas</p>
+            ✨ Atendimento em até 2 minutos
+          </motion.p>
+
+          {/* Trust Bar Premium Redesenhada */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.4, duration: 0.8 }}
+            className="w-full max-w-6xl"
+          >
+            {/* Linha Decorativa Superior */}
+            <div className="relative mb-10 sm:mb-12">
+              <div className="absolute inset-0 flex items-center" aria-hidden="true">
+                <div className="w-full border-t border-white/10" />
               </div>
-              <p className="text-gray-400 text-[10px] uppercase tracking-[0.2em] font-medium">Peso Eliminado em Hortolândia</p>
+              <div className="relative flex justify-center">
+                <div className="bg-[#131842] px-4">
+                  <div className="flex items-center gap-2 text-[#C5A059]/60">
+                    <div className="w-2 h-2 bg-[#C5A059] rounded-full animate-pulse" />
+                    <span className="text-[10px] uppercase tracking-[0.3em] font-bold">Excelência Comprovada</span>
+                    <div className="w-2 h-2 bg-[#C5A059] rounded-full animate-pulse" />
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* KPI 2: Vidas Transformadas */}
-            <div className="flex flex-col items-center group">
-              <div className="flex items-center gap-3 mb-1">
-                <ShieldCheck className="text-[#C5A059] w-6 h-6 group-hover:scale-110 transition-transform" />
-                <p className="text-white font-serif text-3xl font-bold">+5.000</p>
-              </div>
-              <p className="text-gray-400 text-[10px] uppercase tracking-[0.2em] font-medium">Vidas Transformadas</p>
-            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-8 items-start relative">
+              
+              {/* Divisores Verticais (Desktop) */}
+              <div className="hidden sm:block absolute left-1/3 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent" aria-hidden="true" />
+              <div className="hidden sm:block absolute right-1/3 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent" aria-hidden="true" />
 
-            {/* KPI 3: Status da Unidade */}
-            <div className="flex flex-col items-center group">
-              <div className="flex items-center gap-3 mb-1">
-                <Star className="text-[#C5A059] w-6 h-6 fill-[#C5A059] group-hover:rotate-45 transition-transform" />
-                <p className="text-white font-serif text-3xl font-bold uppercase tracking-tighter">Premium</p>
-              </div>
-              <p className="text-gray-400 text-[10px] uppercase tracking-[0.2em] font-medium">Qualidade garantida</p>
+              {/* Item 1: Padrão ANVISA */}
+              <motion.div 
+                whileHover={{ y: -5 }}
+                transition={{ duration: 0.3 }}
+                className="flex flex-col items-center group cursor-default"
+              >
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="relative">
+                    <ShieldCheck className="text-[#C5A059] w-7 h-7 sm:w-8 sm:h-8 relative z-10" />
+                    <div className="absolute inset-0 bg-[#C5A059] blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500" aria-hidden="true" />
+                  </div>
+                  <p className="text-white font-bold text-lg sm:text-xl">Padrão ANVISA</p>
+                </div>
+                <p className="text-slate-500 text-[10px] sm:text-xs uppercase tracking-[0.25em] font-bold">Segurança Total</p>
+              </motion.div>
+
+              {/* Item 2: Vidas Transformadas */}
+              <motion.div 
+                whileHover={{ y: -5 }}
+                transition={{ duration: 0.3 }}
+                className="flex flex-col items-center group cursor-default"
+              >
+                <p className="text-white font-serif text-4xl sm:text-5xl font-bold group-hover:text-[#C5A059] transition-colors duration-500 tracking-tight mb-1">
+                  +5.000
+                </p>
+                <p className="text-slate-500 text-[10px] sm:text-xs uppercase tracking-[0.25em] font-bold">Vidas Transformadas</p>
+              </motion.div>
+
+              {/* Item 3: Unidade Premium */}
+              <motion.div 
+                whileHover={{ y: -5 }}
+                transition={{ duration: 0.3 }}
+                className="flex flex-col items-center group cursor-default"
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <Star className="text-[#C5A059] w-5 h-5 sm:w-6 sm:h-6 fill-[#C5A059] group-hover:rotate-180 transition-transform duration-700" />
+                  <p className="text-transparent bg-clip-text bg-gradient-to-r from-[#C5A059] to-[#d4b068] font-serif text-3xl sm:text-4xl font-bold uppercase tracking-tighter">
+                    Premium
+                  </p>
+                </div>
+                <p className="text-slate-500 text-[10px] sm:text-xs uppercase tracking-[0.25em] font-bold">Unidade Hortolândia</p>
+              </motion.div>
+
             </div>
           </motion.div>
-
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 pointer-events-none opacity-40">
-        <span className="text-[9px] text-[#C5A059] uppercase tracking-[0.5em] font-bold">Scroll</span>
-        <div className="w-[1px] h-14 bg-gradient-to-b from-[#C5A059] to-transparent" />
-      </div>
+      {/* Scroll Indicator Refinado */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2 }}
+        className="absolute bottom-8 sm:bottom-12 left-1/2 -translate-x-1/2 z-20 hidden lg:flex flex-col items-center pointer-events-none"
+      >
+        <motion.div
+          animate={{ y: [0, 12, 0] }}
+          transition={{ 
+            duration: 2.5, 
+            repeat: Infinity,
+            ease: "easeInOut" 
+          }}
+          className="flex flex-col items-center gap-4"
+        >
+          <span className="text-[9px] text-[#C5A059] uppercase tracking-[0.6em] font-black opacity-60">
+            Role para Explorar
+          </span>
+          <div className="relative w-6 h-10 border-2 border-[#C5A059]/40 rounded-full flex items-start justify-center p-2">
+            <motion.div
+              animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}
+              transition={{ 
+                duration: 2, 
+                repeat: Infinity,
+                ease: "easeInOut" 
+              }}
+              className="w-1.5 h-1.5 bg-[#C5A059] rounded-full"
+            />
+          </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
 
-export default HeroSection;
+export default memo(HeroSection);
