@@ -435,13 +435,13 @@ Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) par
 
 ## 📞 Contato
 
-**Iago Munhoz** - Desenvolvedor Frontend
+**Iago Munhoz** - Desenvolvedor FullStack
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/iagomunhoz)
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/MunhozIago244)
 [![Portfolio](https://img.shields.io/badge/Portfolio-C5A059?style=for-the-badge&logo=google-chrome&logoColor=white)](https://iagomunhoz.dev)
 
-**Email:** munhoziago244@gmail.com
+**Email:** iagomunhoz48@gmail.com
 
 **Link do Projeto:** [https://github.com/MunhozIago244/Magrass-LP](https://github.com/MunhozIago244/Magrass-LP)
 

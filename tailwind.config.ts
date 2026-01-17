@@ -2,7 +2,12 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -47,6 +52,7 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Identidade Visual Magrass
         gold: {
           DEFAULT: "hsl(40 47% 56%)",
           light: "hsl(45 55% 65%)",
@@ -102,6 +108,20 @@ export default {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-10px)" },
         },
+        // Keyframes para o componente Canopy / Marquee
+        "canopy-x": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(calc(-100% - var(--gap)))" },
+        },
+        "canopy-y": {
+          from: { transform: "translateY(0)" },
+          to: { transform: "translateY(calc(-100% - var(--gap)))" },
+        },
+        // Legado (opcional, manter para compatibilidade se necessário)
+        "scroll-horizontal": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -110,6 +130,10 @@ export default {
         "fade-in-up": "fade-in-up 0.8s ease-out forwards",
         shimmer: "shimmer 3s ease-in-out infinite",
         float: "float 6s ease-in-out infinite",
+        // Animações Canopy (utilizando variáveis CSS dinâmicas)
+        "canopy-horizontal": "canopy-x var(--duration) linear infinite",
+        "canopy-vertical": "canopy-y var(--duration) linear infinite",
+        "scroll-horizontal": "scroll-horizontal 40s linear infinite",
       },
     },
   },

@@ -1,10 +1,10 @@
 import { useEffect, lazy, Suspense } from "react";
-// HeroSection é importada estaticamente para não atrasar a primeira pintura (LCP)
 import HeroSection from "@/components/landing/HeroSection";
 import { SEOHead } from '@/components/landing/SEOHead';
 import { CONFIG } from "@/config/siteConfig";
 
-// Componentes abaixo da dobra são carregados via Lazy Loading para leveza no mobile
+// Componentes carregados via Lazy Loading
+const KineticTestimonial = lazy(() => import("@/components/landing/KineticTestimonial"));
 const ServicesSection = lazy(() => import("@/components/landing/ServicesSection"));
 const BenefitsSection = lazy(() => import("@/components/landing/BenefitsSection"));
 const CTASection = lazy(() => import("@/components/landing/CTASection"));
@@ -14,50 +14,51 @@ const FloatingWhatsApp = lazy(() =>
 );
 
 /**
- * Componente Skeleton para transições suaves de carregamento
+ * Skeleton para transições de carregamento
  */
 const SectionLoader = () => (
   <div className="w-full h-96 bg-[#F9F9F9] animate-pulse flex items-center justify-center">
-    <div className="w-12 h-12 border-4 border-[#C5A059]/20 border-t-[#C5A059] rounded-full animate-spin" />
+    <div className="w-12 h-12 border-4 border-gold/20 border-t-gold rounded-full animate-spin" />
   </div>
 );
 
 const Index = () => {
   useEffect(() => {
-    // Scroll restoration para anúncios e campanhas
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <>
-      {/* SEO e Meta tags no topo para indexação prioritária */}
       <SEOHead 
         title={`${CONFIG.footer.brand} | ${CONFIG.hero.badge}`} 
       />
 
-      <main className="min-h-screen bg-[#F9F9F9] overflow-x-hidden selection:bg-[#C5A059]/30">
-        {/* Camada 1: Desejo (Imediato) */}
+      <main className="min-h-screen bg-[#F9F9F9] overflow-x-hidden selection:bg-gold/30">
+        {/* Camada 1: Desejo (Imediato - Static Import) */}
         <HeroSection />
 
-        {/* As seções abaixo são carregadas de forma assíncrona. 
-            Isso reduz o bundle inicial de ~182kB para algo muito mais leve,
-            melhorando a nota no Google PageSpeed Mobile.
-        */}
         <Suspense fallback={<SectionLoader />}>
+          {/* Camada 2: Prova Social Cinética (Novo)
+              Inserido aqui para validar a promessa da Hero antes de mostrar os serviços.
+          */}
+          <KineticTestimonial 
+            testimonials={CONFIG.testimonials} 
+            speed={1}
+          />
+
           <div className="relative">
-            {/* Camada 2: Solução */}
+            {/* Camada 3: Solução */}
             <ServicesSection />
             
-            {/* Camada 3: Autoridade */}
+            {/* Camada 4: Autoridade */}
             <BenefitsSection />
             
-            {/* Camada 4: Decisão */}
+            {/* Camada 5: Decisão */}
             <CTASection />
           </div>
 
           <Footer />
           
-          {/* Componente flutuante carregado por último */}
           <FloatingWhatsApp />
         </Suspense>
       </main>

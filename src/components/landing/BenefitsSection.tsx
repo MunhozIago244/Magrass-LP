@@ -1,6 +1,9 @@
+"use client";
+import React, { memo } from "react";
 import { motion } from "framer-motion";
 import { CONFIG } from "@/config/siteConfig";
-import { Check, ShieldCheck } from "lucide-react";
+import { Check, ShieldCheck, Star } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const BenefitsSection = () => {
   const { benefits } = CONFIG;
@@ -9,86 +12,105 @@ const BenefitsSection = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
+      transition: { staggerChildren: 0.12 },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, x: 30 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
   };
 
   return (
-    <section className="py-24 lg:py-32 bg-[#F9F9F9] relative overflow-hidden">
-      {/* Elementos Decorativos de Fundo */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none" aria-hidden="true">
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-[#131842]/[0.03] rounded-full blur-3xl" />
-        <div className="absolute top-1/2 -right-24 w-64 h-64 bg-[#C5A059]/[0.05] rounded-full blur-3xl" />
+    <section 
+      className={cn(
+        "py-24 lg:py-40 bg-[#FCFCFC] relative overflow-hidden",
+        /* Conexão suave com sombras atmosféricas light */
+        "before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:h-32 before:bg-gradient-to-b before:from-black/[0.03] before:to-transparent before:z-10",
+        "after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-32 after:bg-gradient-to-t after:from-black/[0.03] after:to-transparent after:z-10"
+      )}
+    >
+      {/* Elementos de Luz e Textura Soft */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        {/* Glow Champagne */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gold/10 rounded-full blur-[140px] -translate-y-1/2 translate-x-1/3 opacity-60" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-magrass-blue/5 rounded-full blur-[120px] translate-y-1/3 -translate-x-1/4" />
+        
+        {/* Textura de Grid Suave */}
+        <div className="absolute inset-0 opacity-[0.03] bg-[url('/grid.svg')] bg-center [mask-image:radial-gradient(ellipse_at_center,black,transparent)]" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
-          {/* Lado Esquerdo - Texto e Autoridade */}
+          {/* Lado Esquerdo - Narrativa Editorial */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.8 }}
           >
-            <div className="flex items-center gap-2 mb-6">
-              <span className="h-px w-8 bg-[#C5A059]" aria-hidden="true"></span>
-              <span className="text-[#C5A059] uppercase tracking-[0.3em] text-xs font-bold">
-                Exclusividade
+            <div className="flex items-center gap-3 mb-8">
+              <Star className="w-4 h-4 text-gold fill-gold" />
+              <span className="text-gold uppercase tracking-[0.4em] text-[11px] font-black">
+                A Experiência Definitiva
               </span>
             </div>
 
-            <h2 className="text-4xl lg:text-5xl font-serif text-[#131842] mb-6 leading-tight">
+            <h2 className="text-5xl lg:text-7xl font-serif text-magrass-blue mb-8 leading-[1.05] tracking-tighter">
               {benefits.title} <br />
-              <span className="text-[#C5A059] italic">{benefits.titleHighlight}</span>
+              <span className="text-gold italic font-normal">{benefits.titleHighlight}</span>
             </h2>
 
-            <p className="text-gray-600 font-sans text-lg mb-10 max-w-lg leading-relaxed">
-              Não somos apenas uma clínica, somos um centro de excelência.
-              Unimos o rigor científico à tecnologia de elite para garantir
-              que sua jornada seja segura, luxuosa e transformadora.
+            <p className="text-slate-500 font-sans text-lg mb-12 max-w-lg leading-relaxed font-light border-l-2 border-gold/20 pl-8">
+              Na Magrass, a sofisticação encontra o rigor científico. Criamos um ecossistema 
+              de cuidado onde cada detalhe é desenhado para sua 
+              <span className="text-magrass-blue font-semibold"> transformação absoluta.</span>
             </p>
 
-            {/* Badge de Confiança */}
-            <div className="flex items-center gap-6 p-6 bg-white rounded-2xl shadow-sm border border-gray-100 max-w-sm">
-              <div className="bg-[#131842] p-3 rounded-full text-[#C5A059]">
-                <ShieldCheck size={28} aria-hidden="true" />
+            {/* Badge de Autoridade Light */}
+            <div className="flex items-center gap-6 p-1.5 rounded-full bg-white border border-slate-100 pr-8 max-w-fit shadow-xl shadow-gold/5 group hover:border-gold/30 transition-all duration-500">
+              <div className="bg-magrass-blue p-4 rounded-full text-white shadow-lg shadow-magrass-blue/20 group-hover:bg-gold group-hover:text-magrass-blue transition-colors duration-500">
+                <ShieldCheck size={24} strokeWidth={2} />
               </div>
               <div>
-                <p className="text-[#131842] font-bold text-sm uppercase tracking-tighter">Protocolos Seguros</p>
-                <p className="text-gray-500 text-xs">Selo de Qualidade Magrass Brasil</p>
+                <p className="text-magrass-blue font-bold text-xs uppercase tracking-widest">Protocolos de Elite</p>
+                <p className="text-gold/80 text-[10px] font-black uppercase tracking-tighter">Padrão Ouro Internacional</p>
               </div>
             </div>
           </motion.div>
 
-          {/* Lado Direito - Cards de Benefícios */}
+          {/* Lado Direito - Cards Estilo Minimalista Luxo */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid sm:grid-cols-1 gap-4"
+            className="flex flex-col gap-5"
           >
             {benefits.items.map((item, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                whileHover={{ x: 10 }}
-                className="group flex items-center gap-5 p-5 bg-white/60 backdrop-blur-md rounded-2xl border border-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:border-[#C5A059]/30 transition-all duration-300"
+                whileHover={{ scale: 1.02, x: 10 }}
+                className="group flex items-center gap-6 p-7 bg-white rounded-[2.2rem] border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_40px_rgba(197,160,89,0.1)] hover:border-gold/30 transition-all duration-500"
               >
-                <div className="w-12 h-12 rounded-xl bg-[#131842] flex items-center justify-center flex-shrink-0 transition-transform group-hover:rotate-12 shadow-lg">
-                  <Check className="w-6 h-6 text-[#C5A059]" aria-hidden="true" />
+                {/* Check Icon com Soft Glow */}
+                <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center flex-shrink-0 transition-all group-hover:bg-gold/10 group-hover:border-gold/20">
+                  <Check className="w-6 h-6 text-gold transition-transform group-hover:scale-110" strokeWidth={3} />
                 </div>
-                <span className="font-sans text-[#131842] font-semibold text-lg tracking-tight">
-                  {item}
-                </span>
+                
+                <div className="flex flex-col">
+                  <span className="block font-serif text-magrass-blue text-xl md:text-2xl tracking-tight leading-none mb-1 group-hover:text-gold transition-colors">
+                    {item}
+                  </span>
+                  <div className="flex items-center gap-2">
+                    <div className="h-px w-4 bg-gold/30" />
+                    <span className="text-slate-400 text-[10px] uppercase font-bold tracking-[0.15em]">
+                      Exclusividade Magrass
+                    </span>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -99,4 +121,4 @@ const BenefitsSection = () => {
   );
 };
 
-export default BenefitsSection;
+export default memo(BenefitsSection);
