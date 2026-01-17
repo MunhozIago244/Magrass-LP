@@ -98,5 +98,8 @@
     "vite-plugin-imagemin": "^0.1.0",
     "vite-plugin-pwa": "^1.2.0",
     "vitest": "^3.2.4"
+  },
+  "resolutions": {
+    "framer-motion": "11.x.x"
   }
 }

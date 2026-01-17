@@ -26,6 +26,8 @@ const HeroSection = () => {
             src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop"
             alt="Magrass Hortolândia - Ambiente Premium"
             fetchPriority="high"
+            loading="eager" 
+            decoding="sync"
             className="w-full h-full object-cover"
           />
         </motion.div>

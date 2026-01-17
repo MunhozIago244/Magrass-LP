@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 import imagemin from "vite-plugin-imagemin";
 import { VitePWA } from "vite-plugin-pwa";
 import { visualizer } from "rollup-plugin-visualizer";
-import compression from "vite-plugin-compression"; // Otimização de entrega
+import compression from "vite-plugin-compression";
 import path from "path";
 
 interface ImageminOptions {
@@ -28,7 +28,6 @@ export default defineConfig(({ mode }): UserConfig => {
   const imageminPlugin = getImageminPlugin();
 
   return {
-    // Definição de constantes globais para otimização de tree-shaking
     define: {
       "process.env.NODE_ENV": JSON.stringify(mode),
     },
@@ -36,7 +35,6 @@ export default defineConfig(({ mode }): UserConfig => {
     plugins: [
       react(),
       
-      // 1. PWA & Service Worker (Cache Agressivo)
       VitePWA({
         registerType: "autoUpdate",
         injectRegister: "auto",
@@ -58,23 +56,20 @@ export default defineConfig(({ mode }): UserConfig => {
         },
       }),
 
-      // 2. Compressão (Brotli): Reduz o payload em até 80% comparado ao Gzip comum
       isProd && compression({
         algorithm: 'brotliCompress',
         ext: '.br',
-        threshold: 1024, // Apenas arquivos > 1kb
+        threshold: 1024,
       }),
 
-      // 3. Imagemin (Otimização de Assets)
       isProd && imageminPlugin && imageminPlugin({
         gifsicle: { optimizationLevel: 7 },
         optipng: { optimizationLevel: 7 },
-        mozjpeg: { quality: 75 }, // Reduzido levemente para ganho massivo de performance
+        mozjpeg: { quality: 75 },
         pngquant: { quality: [0.65, 0.8], speed: 4 },
         svgo: { plugins: [{ name: "removeViewBox", active: false }] },
       }),
 
-      // 4. Analisador de Bundle
       isProd && (visualizer({
         filename: "./dist/stats.html",
         gzipSize: true,
@@ -94,41 +89,56 @@ export default defineConfig(({ mode }): UserConfig => {
         compress: {
           drop_console: true,
           drop_debugger: true,
-          pure_funcs: ['console.log', 'console.info'], // Remove chamadas específicas
-          passes: 2, // Segunda passada para minificação agressiva
+          pure_funcs: ['console.log', 'console.info'],
+          passes: 2,
         },
         format: { comments: false },
+        // Mantém nomes de classes e funções para evitar quebras em libs que dependem de reflexão
+        keep_classnames: isProd,
+        keep_fnames: isProd,
       },
       
       target: "esnext",
-      sourcemap: false, // Desativado em prod para segurança e tamanho
-      cssCodeSplit: true, // CSS menor e carregado por página
+      sourcemap: false,
+      cssCodeSplit: true,
       reportCompressedSize: true,
-      chunkSizeWarningLimit: 600,
+      chunkSizeWarningLimit: 800, // Aumentado levemente para acomodar o vendor unificado
 
       rollupOptions: {
         output: {
-          // Organização de arquivos para Cache de Borda (Edge) eficiente
           chunkFileNames: "assets/js/[name]-[hash].js",
           entryFileNames: "assets/js/[name]-[hash].js",
           assetFileNames: "assets/[ext]/[name]-[hash].[ext]",
 
           manualChunks(id) {
             if (id.includes("node_modules")) {
-              // Separação por domínio de responsabilidade
-              if (id.includes("react") || id.includes("scheduler")) return "vendor-core";
-              if (id.includes("framer-motion")) return "vendor-motion";
-              if (id.includes("lucide")) return "vendor-ui";
-              if (id.includes("@tanstack") || id.includes("query")) return "vendor-data";
+              // UNIFICAÇÃO CORE: Agrupamos React + Motion + Lucide para evitar Circular Dependencies
+              // O erro 'createContext' ocorre quando essas libs são separadas incorretamente
+              if (
+                id.includes("react") || 
+                id.includes("react-dom") || 
+                id.includes("scheduler") ||
+                id.includes("framer-motion") ||
+                id.includes("lucide-react") ||
+                id.includes("clsx") ||
+                id.includes("tailwind-merge")
+              ) {
+                return "vendor-framework";
+              }
+
+              // Outras bibliotecas de dados podem ficar separadas
+              if (id.includes("@tanstack") || id.includes("query")) {
+                return "vendor-data";
+              }
               
-              return "vendor-others";
+              // O restante cai em um chunk comum, mas o Rollup agora tem um grafo mais simples
+              return "vendor-lib";
             }
           },
         },
       },
     },
 
-    // Otimização de pré-processamento de dependências
     optimizeDeps: {
       include: ["react", "react-dom", "framer-motion", "lucide-react"],
     },
