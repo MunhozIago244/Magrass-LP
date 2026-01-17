@@ -466,5 +466,3 @@ Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) par
 Feito com ❤️ e ☕ por [Iago Munhoz](https://github.com/MunhozIago244)
 
 </div>
-=======
->>>>>>> 46db9cc587ad3896aa27049e96f4097d07a7ca36
