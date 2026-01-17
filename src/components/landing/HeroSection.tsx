@@ -23,7 +23,7 @@ const HeroSection = () => {
           className="w-full h-full"
         >
           <img
-            src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop"
+            src="/assets/images/hero-section-image.webp"
             alt="Magrass Hortolândia - Ambiente Premium"
             fetchPriority="high"
             loading="eager" 
