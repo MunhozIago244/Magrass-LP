@@ -21,74 +21,79 @@ const CTASection = () => {
 
   return (
     <section className="relative py-28 lg:py-40 bg-gradient-to-br from-[#0d0f2e] via-[#131842] to-[#1a1d4a] overflow-hidden">
-      
       {/* Background Pattern com Animação */}
       <div className="absolute inset-0 opacity-[0.08]" aria-hidden="true">
         <motion.div
-          animate={{ 
-            backgroundPosition: ['0% 0%', '100% 100%'],
+          animate={{
+            backgroundPosition: ["0% 0%", "100% 100%"],
           }}
-          transition={{ 
-            duration: 20, 
-            repeat: Infinity, 
+          transition={{
+            duration: 20,
+            repeat: Infinity,
             repeatType: "reverse",
-            ease: "linear"
+            ease: "linear",
           }}
           className="absolute inset-0"
           style={{
             backgroundImage: `radial-gradient(circle at 50% 50%, #C5A059 1.5px, transparent 0)`,
-            backgroundSize: '50px 50px'
+            backgroundSize: "50px 50px",
           }}
         />
       </div>
 
       {/* Glow Effects Animados */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <motion.div 
-          animate={{ 
+        <motion.div
+          animate={{
             scale: [1, 1.3, 1],
-            opacity: [0.1, 0.2, 0.1] 
+            opacity: [0.1, 0.2, 0.1],
           }}
-          transition={{ 
-            duration: 10, 
+          transition={{
+            duration: 10,
             repeat: Infinity,
-            ease: "easeInOut" 
+            ease: "easeInOut",
           }}
-          className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#C5A059] rounded-full blur-[140px] -translate-y-1/2 translate-x-1/2" 
+          className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#C5A059] rounded-full blur-[140px] -translate-y-1/2 translate-x-1/2"
         />
-        <motion.div 
-          animate={{ 
+        <motion.div
+          animate={{
             scale: [1, 1.2, 1],
-            opacity: [0.05, 0.15, 0.05] 
+            opacity: [0.05, 0.15, 0.05],
           }}
-          transition={{ 
-            duration: 12, 
+          transition={{
+            duration: 12,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: 3 
+            delay: 3,
           }}
-          className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#C5A059] rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2" 
+          className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#C5A059] rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2"
         />
-        <motion.div 
-          animate={{ 
+        <motion.div
+          animate={{
             scale: [1, 1.15, 1],
-            opacity: [0.08, 0.18, 0.08] 
+            opacity: [0.08, 0.18, 0.08],
           }}
-          transition={{ 
-            duration: 14, 
+          transition={{
+            duration: 14,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: 6 
+            delay: 6,
           }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-white rounded-full blur-[100px]" 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-white rounded-full blur-[100px]"
         />
       </div>
 
       {/* Linhas Decorativas Superiores */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C5A059]/30 to-transparent" aria-hidden="true" />
-      <div className="absolute top-2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true" />
+      <div
+        className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C5A059]/30 to-transparent"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute top-2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"
+        aria-hidden="true"
+      />
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="container mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-8 relative z-10">
         <motion.div
           initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -96,7 +101,6 @@ const CTASection = () => {
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-5xl mx-auto text-center space-y-10"
         >
-          
           {/* Badge Superior Premium */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -107,16 +111,16 @@ const CTASection = () => {
           >
             {/* Shimmer Effect */}
             <motion.div
-              animate={{ x: ['-100%', '200%'] }}
-              transition={{ 
-                duration: 3, 
-                repeat: Infinity, 
+              animate={{ x: ["-100%", "200%"] }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
                 ease: "linear",
-                repeatDelay: 2 
+                repeatDelay: 2,
               }}
               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
             />
-            
+
             <Sparkles className="w-5 h-5 text-[#C5A059] relative z-10" aria-hidden="true" />
             <span className="text-white/90 text-xs sm:text-sm font-bold uppercase tracking-[0.25em] relative z-10">
               Oportunidade Exclusiva
@@ -132,8 +136,8 @@ const CTASection = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="space-y-6"
           >
-            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-[1.1] tracking-[-0.01em] px-4 sm:px-0">
-              {cta.title.split('?')[0]}
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white leading-[1.1] tracking-[-0.01em] px-4 sm:px-0">
+              {cta.title.split("?")[0]}
               <span className="relative inline-block ml-2">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C5A059] via-[#d4b068] to-[#C5A059]">
                   ?
@@ -185,21 +189,25 @@ const CTASection = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Agendar avaliação gratuita via WhatsApp"
-              whileHover={shouldReduceMotion ? {} : { 
-                scale: 1.05,
-                y: -5
-              }}
+              whileHover={
+                shouldReduceMotion
+                  ? {}
+                  : {
+                      scale: 1.05,
+                      y: -5,
+                    }
+              }
               whileTap={{ scale: 0.98 }}
               className="group relative inline-flex items-center gap-4 px-12 sm:px-16 py-6 sm:py-8 bg-gradient-to-r from-[#C5A059] to-[#d4b068] text-white rounded-full font-bold text-lg sm:text-xl shadow-[0_20px_60px_rgba(197,160,89,0.4)] hover:shadow-[0_30px_80px_rgba(197,160,89,0.6)] transition-all duration-500 overflow-hidden min-h-[72px] sm:min-h-[80px]"
             >
               {/* Shine Effect */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                 <motion.div
-                  animate={{ x: ['-100%', '200%'] }}
-                  transition={{ 
-                    duration: 1.5, 
+                  animate={{ x: ["-100%", "200%"] }}
+                  transition={{
+                    duration: 1.5,
                     repeat: Infinity,
-                    repeatDelay: 3 
+                    repeatDelay: 3,
                   }}
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
                 />
@@ -212,17 +220,17 @@ const CTASection = () => {
                 className="absolute inset-0 bg-white rounded-full opacity-20"
                 aria-hidden="true"
               />
-              
-              <MessageCircle 
-                className="w-7 h-7 sm:w-8 sm:h-8 relative z-10 group-hover:rotate-12 transition-transform duration-300" 
-                aria-hidden="true" 
+
+              <MessageCircle
+                className="w-7 h-7 sm:w-8 sm:h-8 relative z-10 group-hover:rotate-12 transition-transform duration-300"
+                aria-hidden="true"
               />
               <span className="relative z-10 uppercase tracking-tight font-black">
                 {cta.button}
               </span>
-              <ArrowRight 
-                className="w-6 h-6 sm:w-7 sm:h-7 relative z-10 group-hover:translate-x-2 transition-transform duration-300" 
-                aria-hidden="true" 
+              <ArrowRight
+                className="w-6 h-6 sm:w-7 sm:h-7 relative z-10 group-hover:translate-x-2 transition-transform duration-300"
+                aria-hidden="true"
               />
             </motion.a>
 
@@ -250,11 +258,11 @@ const CTASection = () => {
             {/* Status Online / Horário */}
             <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
               {isOpen ? (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className="flex items-center gap-3 px-6 py-3 bg-green-500/10 border border-green-500/30 rounded-full backdrop-blur-sm"
-                  role="status" 
+                  role="status"
                   aria-live="polite"
                 >
                   <span className="relative flex h-3 w-3">
@@ -275,7 +283,10 @@ const CTASection = () => {
               )}
 
               <div className="flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm group hover:border-[#C5A059]/30 transition-all duration-300">
-                <ShieldCheck className="w-5 h-5 text-[#C5A059] group-hover:scale-110 transition-transform" aria-hidden="true" />
+                <ShieldCheck
+                  className="w-5 h-5 text-[#C5A059] group-hover:scale-110 transition-transform"
+                  aria-hidden="true"
+                />
                 <span className="text-white/70 text-sm sm:text-base font-medium group-hover:text-white/90 transition-colors">
                   Certificado ANVISA
                 </span>
@@ -300,13 +311,18 @@ const CTASection = () => {
               Hortolândia • Resultados Reais para Todos
             </motion.p>
           </motion.div>
-
         </motion.div>
       </div>
 
       {/* Linhas Decorativas Inferiores */}
-      <div className="absolute bottom-2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true" />
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C5A059]/30 to-transparent" aria-hidden="true" />
+      <div
+        className="absolute bottom-2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C5A059]/30 to-transparent"
+        aria-hidden="true"
+      />
     </section>
   );
 };

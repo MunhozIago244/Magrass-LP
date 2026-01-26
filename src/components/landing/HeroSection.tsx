@@ -74,7 +74,7 @@ const HeroSection = () => {
         aria-hidden="true"
       />
 
-      <div className="container relative z-20 px-4 sm:px-6 lg:px-8 py-12 sm:py-16 flex flex-col items-center justify-center min-h-[100dvh]">
+      <div className="container relative z-20 px-3 xs:px-4 sm:px-6 md:px-8 lg:px-8 py-12 sm:py-16 flex flex-col items-center justify-center min-h-[100dvh]">
         <div className="flex flex-col items-center text-center w-full max-w-7xl mx-auto">
           {/* Badge Superior Premium */}
           <motion.div
@@ -219,7 +219,7 @@ const HeroSection = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-8 items-start relative">
+            <div className="grid grid-cols-1 xs:grid-cols-3 sm:grid-cols-3 gap-4 xs:gap-6 sm:gap-8 items-start relative">
               {/* Divisores Verticais (Desktop) */}
               <div
                 className="hidden sm:block absolute left-1/3 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent"
