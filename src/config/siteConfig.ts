@@ -40,6 +40,31 @@ interface SiteConfig {
     address: string;
     instagram: string;
   };
+  seo: {
+    siteUrl: string;
+    siteName: string;
+    ogImage: string;
+    twitterHandle?: string;
+    themeColor: string;
+    coordinates: {
+      latitude: string;
+      longitude: string;
+    };
+    business: {
+      zipCode: string;
+      city: string;
+      state: string;
+      country: string;
+      rating: {
+        value: string;
+        count: string;
+      };
+      priceRange: string;
+      paymentMethods: string[];
+      currencies: string[];
+    };
+    keywords: string[];
+  };
   hero: {
     badge: string;
     headline: string;
@@ -73,6 +98,45 @@ export const CONFIG: SiteConfig = {
     phone: "5519971720443",
     address: "Rua Zacharias Costa Camargo, 25 - Remanso Campineiro, Hortolândia - SP",
     instagram: "https://www.instagram.com/magrass.hortolandia/",
+  },
+
+  seo: {
+    siteUrl: "https://magrass.com.br",
+    siteName: "Magrass Hortolândia",
+    ogImage: "/assets/images/og-magrass.jpg",
+    twitterHandle: "@magrass",
+    themeColor: "#131842",
+    coordinates: {
+      latitude: "-22.8586",
+      longitude: "-47.2201",
+    },
+    business: {
+      zipCode: "13184-600",
+      city: "Hortolândia",
+      state: "SP",
+      country: "BR",
+      rating: {
+        value: "4.9",
+        count: "247",
+      },
+      priceRange: "$$-$$$",
+      paymentMethods: ["Dinheiro", "Cartão de Crédito", "Cartão de Débito", "Pix"],
+      currencies: ["BRL"],
+    },
+    keywords: [
+      "estética Hortolândia",
+      "emagrecimento Hortolândia",
+      "lipo sem corte",
+      "criolipólise",
+      "harmonização corporal",
+      "Magrass",
+      "clínica de estética",
+      "tratamento corporal",
+      "queima de gordura",
+      "celulite",
+      "flacidez",
+      "rejuvenescimento",
+    ],
   },
 
   hero: {
