@@ -119,10 +119,10 @@ const BenefitsSection = () => {
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="h-[2px] w-8 sm:w-12 bg-gradient-to-r from-[#C5A059] to-[#d4b068] origin-left"
+                className="h-[2px] w-8 sm:w-12 bg-gradient-to-r from-[#3CECD4] to-[#6EF3E1] origin-left"
                 aria-hidden="true"
               />
-              <span className="text-[#C5A059] uppercase tracking-[0.25em] sm:tracking-[0.35em] text-[11px] sm:text-xs font-black flex items-center gap-2">
+              <span className="text-[#3CECD4] uppercase tracking-[0.25em] sm:tracking-[0.35em] text-[11px] sm:text-xs font-black flex items-center gap-2">
                 A Experiência Definitiva
                 <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5" aria-hidden="true" />
               </span>
@@ -133,7 +133,7 @@ const BenefitsSection = () => {
               {benefits.title}
               <br />
               <span className="relative inline-block mt-2">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C5A059] via-[#d4b068] to-[#C5A059] italic font-medium">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3CECD4] via-[#6EF3E1] to-[#3CECD4] italic font-medium">
                   {benefits.titleHighlight}
                 </span>
                 {/* Underline Decorativo */}
@@ -142,7 +142,7 @@ const BenefitsSection = () => {
                   whileInView={{ scaleX: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 0.6 }}
-                  className="absolute -bottom-1 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#C5A059]/40 to-transparent origin-left"
+                  className="absolute -bottom-1 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#3CECD4]/40 to-transparent origin-left"
                   aria-hidden="true"
                 />
               </span>

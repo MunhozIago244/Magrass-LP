@@ -64,8 +64,14 @@ export default {
           light: "hsl(45 55% 65%)",
           dark: "hsl(38 45% 45%)",
         },
+        cyan: {
+          DEFAULT: "#3CECD4", // Cor de destaque vibrante
+          light: "#6EF3E1",
+          dark: "#2BCAB5",
+        },
         magrass: {
-          blue: "hsl(232 56% 17%)",
+          blue: "hsl(232 56% 17%)", // #131842
+          cyan: "#3CECD4", // Cyan vibrante para destaques
           offwhite: "hsl(40 14% 97%)",
           anthracite: "hsl(0 0% 20%)",
         },

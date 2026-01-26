@@ -182,12 +182,12 @@ const ServicesSection = () => {
             className="relative max-w-2xl"
           >
             <div
-              className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-[#C5A059] via-[#C5A059]/50 to-transparent"
+              className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-[#3CECD4] via-[#3CECD4]/50 to-transparent"
               aria-hidden="true"
             />
             <div className="flex items-start gap-4 pl-6">
               <Zap
-                className="w-5 h-5 sm:w-6 sm:h-6 text-[#C5A059] flex-shrink-0 mt-1"
+                className="w-5 h-5 sm:w-6 sm:h-6 text-[#3CECD4] flex-shrink-0 mt-1"
                 aria-hidden="true"
               />
               <p className="text-slate-600 font-sans text-base sm:text-lg lg:text-xl leading-relaxed italic">
@@ -248,12 +248,12 @@ const ServicesSection = () => {
                       <motion.div
                         whileHover={{ rotate: [0, -10, 10, 0], scale: 1.05 }}
                         transition={{ duration: 0.5 }}
-                        className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-[#131842] to-[#1f2554] flex items-center justify-center text-[#C5A059] shadow-lg group-hover:shadow-2xl group-hover:shadow-[#C5A059]/30 transition-all duration-500"
+                        className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-[#131842] to-[#1f2554] flex items-center justify-center text-[#3CECD4] shadow-lg group-hover:shadow-2xl group-hover:shadow-[#3CECD4]/30 transition-all duration-500"
                       >
                         <IconComponent size={28} strokeWidth={2} aria-hidden="true" />
                       </motion.div>
 
-                      <span className="text-[10px] sm:text-[11px] font-black text-[#C5A059] uppercase tracking-[0.2em] px-3.5 py-2 rounded-full bg-[#C5A059]/5 border border-[#C5A059]/20 group-hover:bg-[#C5A059]/10 group-hover:border-[#C5A059]/40 transition-all">
+                      <span className="text-[10px] sm:text-[11px] font-black text-[#131842] uppercase tracking-[0.2em] px-3.5 py-2 rounded-full bg-[#3CECD4]/15 border border-[#3CECD4]/30 group-hover:bg-[#3CECD4]/25 group-hover:border-[#3CECD4]/50 transition-all">
                         {service.category || "Premium"}
                       </span>
                     </div>

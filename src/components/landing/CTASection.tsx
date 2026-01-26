@@ -66,7 +66,7 @@ const CTASection = () => {
             ease: "easeInOut",
             delay: 3,
           }}
-          className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#C5A059] rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2"
+          className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#3CECD4] rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2"
         />
         <motion.div
           animate={{
@@ -85,7 +85,7 @@ const CTASection = () => {
 
       {/* Linhas Decorativas Superiores */}
       <div
-        className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C5A059]/30 to-transparent"
+        className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3CECD4]/30 to-transparent"
         aria-hidden="true"
       />
       <div
@@ -121,11 +121,11 @@ const CTASection = () => {
               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
             />
 
-            <Sparkles className="w-5 h-5 text-[#C5A059] relative z-10" aria-hidden="true" />
+            <Sparkles className="w-5 h-5 text-[#3CECD4] relative z-10" aria-hidden="true" />
             <span className="text-white/90 text-xs sm:text-sm font-bold uppercase tracking-[0.25em] relative z-10">
               Oportunidade Exclusiva
             </span>
-            <Zap className="w-4 h-4 text-[#C5A059]/60 relative z-10" aria-hidden="true" />
+            <Zap className="w-4 h-4 text-[#3CECD4]/60 relative z-10" aria-hidden="true" />
           </motion.div>
 
           {/* Headline Monumental */}
@@ -139,14 +139,14 @@ const CTASection = () => {
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white leading-[1.1] tracking-[-0.01em] px-4 sm:px-0">
               {cta.title.split("?")[0]}
               <span className="relative inline-block ml-2">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C5A059] via-[#d4b068] to-[#C5A059]">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3CECD4] via-[#6EF3E1] to-[#3CECD4]">
                   ?
                 </span>
                 {/* Glow no ponto de interrogação */}
                 <motion.div
                   animate={{ opacity: [0.5, 1, 0.5] }}
                   transition={{ duration: 2, repeat: Infinity }}
-                  className="absolute -inset-2 bg-[#C5A059] blur-2xl opacity-30"
+                  className="absolute -inset-2 bg-[#3CECD4] blur-2xl opacity-30"
                   aria-hidden="true"
                 />
               </span>

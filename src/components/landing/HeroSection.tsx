@@ -219,14 +219,18 @@ const HeroSection = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 xs:grid-cols-3 sm:grid-cols-3 gap-4 xs:gap-6 sm:gap-8 items-start relative">
+            <div className="grid grid-cols-1 xs:grid-cols-4 sm:grid-cols-4 gap-4 xs:gap-4 sm:gap-6 items-start relative">
               {/* Divisores Verticais (Desktop) */}
               <div
-                className="hidden sm:block absolute left-1/3 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent"
+                className="hidden xs:block absolute left-1/4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent"
                 aria-hidden="true"
               />
               <div
-                className="hidden sm:block absolute right-1/3 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent"
+                className="hidden xs:block absolute left-2/4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent"
+                aria-hidden="true"
+              />
+              <div
+                className="hidden xs:block absolute right-1/4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent"
                 aria-hidden="true"
               />
 
@@ -238,9 +242,9 @@ const HeroSection = () => {
               >
                 <div className="flex items-center gap-3 mb-2">
                   <div className="relative">
-                    <ShieldCheck className="text-[#C5A059] w-7 h-7 sm:w-8 sm:h-8 relative z-10" />
+                    <ShieldCheck className="text-[#3CECD4] w-7 h-7 sm:w-8 sm:h-8 relative z-10" />
                     <div
-                      className="absolute inset-0 bg-[#C5A059] blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500"
+                      className="absolute inset-0 bg-[#3CECD4] blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500"
                       aria-hidden="true"
                     />
                   </div>
@@ -251,13 +255,27 @@ const HeroSection = () => {
                 </p>
               </motion.div>
 
-              {/* Item 2: Vidas Transformadas */}
+              {/* Item 2: 12 Toneladas Eliminadas */}
               <motion.div
                 whileHover={{ y: -5 }}
                 transition={{ duration: 0.3 }}
                 className="flex flex-col items-center group cursor-default"
               >
-                <p className="text-white font-serif text-4xl sm:text-5xl font-bold group-hover:text-[#C5A059] transition-colors duration-500 tracking-tight mb-1">
+                <p className="text-transparent bg-clip-text bg-gradient-to-r from-[#3CECD4] via-[#6EF3E1] to-[#3CECD4] font-serif text-3xl sm:text-4xl font-bold tracking-tight mb-1 group-hover:scale-110 transition-transform duration-500">
+                  +12t
+                </p>
+                <p className="text-slate-500 text-[10px] sm:text-xs uppercase tracking-[0.25em] font-bold">
+                  Peso Eliminado
+                </p>
+              </motion.div>
+
+              {/* Item 3: Vidas Transformadas */}
+              <motion.div
+                whileHover={{ y: -5 }}
+                transition={{ duration: 0.3 }}
+                className="flex flex-col items-center group cursor-default"
+              >
+                <p className="text-white font-serif text-4xl sm:text-5xl font-bold group-hover:text-[#3CECD4] transition-colors duration-500 tracking-tight mb-1">
                   +5.000
                 </p>
                 <p className="text-slate-500 text-[10px] sm:text-xs uppercase tracking-[0.25em] font-bold">
@@ -265,7 +283,7 @@ const HeroSection = () => {
                 </p>
               </motion.div>
 
-              {/* Item 3: Unidade Premium */}
+              {/* Item 4: Unidade Premium */}
               <motion.div
                 whileHover={{ y: -5 }}
                 transition={{ duration: 0.3 }}

@@ -65,13 +65,13 @@ const Footer = () => {
                   key={i}
                   whileHover={{
                     scale: 1.1,
-                    backgroundColor: "rgba(197, 160, 89, 0.1)",
+                    backgroundColor: "rgba(60, 236, 212, 0.1)",
                   }}
                   whileTap={{ scale: 0.95 }}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-2xl border border-white/10 flex items-center justify-center text-white hover:text-gold hover:border-gold/50 transition-colors shadow-xl backdrop-blur-sm"
+                  className="w-12 h-12 rounded-2xl border border-white/10 flex items-center justify-center text-white hover:text-[#3CECD4] hover:border-[#3CECD4]/50 transition-colors shadow-xl backdrop-blur-sm"
                 >
                   <social.icon size={20} />
                 </motion.a>
