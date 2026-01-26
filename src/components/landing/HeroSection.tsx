@@ -2,45 +2,54 @@
 
 import { memo } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { getWhatsAppLink } from "@/config/siteConfig";
-import { Zap, ShieldCheck, Star } from "lucide-react";
+import { CONFIG, getWhatsAppLink } from "@/config/siteConfig";
+import { MessageCircle, Star, ShieldCheck, ArrowRight, Trophy, Sparkles } from "lucide-react";
+import { AnimatedTextGenerate } from "@/components/ui/animated-text-generate";
 
 const HeroSection = () => {
+  const { hero } = CONFIG;
   const shouldReduceMotion = useReducedMotion() ?? false;
 
   return (
     <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0D5F5F] via-[#0A4D4D] to-[#063838]">
-      {/* Background Pattern Sutil */}
-      <div className="absolute inset-0 z-0" aria-hidden="true">
-        <div
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='rgba(255,255,255,0.02)' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E")`,
-            backgroundPosition: "center bottom",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "100% auto",
-          }}
-        />
+      {/* Background com imagem e overlay */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#063838]/95 via-[#0A4D4D]/85 to-[#063838]/90 z-10" />
+        <motion.div
+          initial={shouldReduceMotion ? { opacity: 0.5 } : { scale: 1.15, opacity: 0 }}
+          animate={{ scale: 1, opacity: 0.5 }}
+          transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
+          className="w-full h-full"
+        >
+          <img
+            src="/assets/images/hero-section-image.webp"
+            alt="Magrass Hortolândia - Ambiente Premium"
+            fetchPriority="high"
+            loading="eager"
+            decoding="sync"
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
       </div>
 
-      {/* Luzes de Ambientação - Dourado */}
-      <div className="absolute inset-0 z-5 pointer-events-none" aria-hidden="true">
+      {/* Luzes de Ambientação Duplas - Dourado */}
+      <div className="absolute inset-0 z-10 pointer-events-none" aria-hidden="true">
         <motion.div
           animate={{
-            scale: [1, 1.15, 1],
-            opacity: [0.08, 0.15, 0.08],
+            scale: [1, 1.2, 1],
+            opacity: [0.15, 0.25, 0.15],
           }}
           transition={{
             duration: 8,
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute top-1/4 -left-20 w-72 sm:w-[32rem] h-72 sm:h-[32rem] bg-[#D4AF37]/10 rounded-full blur-[120px]"
+          className="absolute top-1/4 -left-20 w-72 sm:w-[32rem] h-72 sm:h-[32rem] bg-[#D4AF37]/20 rounded-full blur-[120px]"
         />
         <motion.div
           animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.06, 0.12, 0.06],
+            scale: [1, 1.15, 1],
+            opacity: [0.1, 0.2, 0.1],
           }}
           transition={{
             duration: 10,
@@ -48,210 +57,285 @@ const HeroSection = () => {
             ease: "easeInOut",
             delay: 2,
           }}
-          className="absolute bottom-1/4 -right-20 w-64 sm:w-96 h-64 sm:h-96 bg-[#F4D03F]/8 rounded-full blur-[100px]"
+          className="absolute bottom-1/4 -right-20 w-64 sm:w-96 h-64 sm:h-96 bg-[#F4D03F]/15 rounded-full blur-[100px]"
         />
       </div>
 
-      {/* Container Principal - Max-width 1200px */}
-      <div className="container relative z-20 max-w-[1200px] mx-auto px-6 sm:px-12 py-20 sm:py-24 flex flex-col items-center justify-center min-h-[100dvh]">
-        <div className="flex flex-col items-center text-center w-full">
-          {/* Espaço Superior - 10vh */}
-          <div className="h-[10vh] hidden lg:block" aria-hidden="true" />
+      {/* Grid Pattern Sutil */}
+      <div
+        className="absolute inset-0 z-10 opacity-[0.015]"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(212, 175, 55, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(212, 175, 55, 0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: "50px 50px",
+        }}
+        aria-hidden="true"
+      />
 
-          {/* Headline Reformulado - 2 Linhas Claras */}
-          <motion.h1
-            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 30 }}
+      <div className="container relative z-20 px-3 xs:px-4 sm:px-6 md:px-8 lg:px-8 py-12 sm:py-16 flex flex-col items-center justify-center min-h-[100dvh]">
+        <div className="flex flex-col items-center text-center w-full max-w-7xl mx-auto">
+          {/* Badge Superior Premium - Mantido */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
-            className="mb-8 leading-[1.2]"
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="group relative flex items-center gap-2.5 px-6 py-3 mb-8 sm:mb-12 rounded-full border border-[#D4AF37]/40 bg-gradient-to-r from-[#D4AF37]/10 via-[#F4D03F]/5 to-[#D4AF37]/10 backdrop-blur-xl min-h-[44px] overflow-hidden"
           >
-            {/* Linha 1: Texto em Branco */}
-            <span className="block text-white font-bold text-[2rem] sm:text-[2.5rem] lg:text-[3.5rem] mb-2 tracking-tight">
-              Realize sua transformação na
-            </span>
-
-            {/* Linha 2: Nome da Marca em Dourado */}
-            <span
-              className="block text-[#D4AF37] font-bold italic text-[2.5rem] sm:text-[3rem] lg:text-[4rem] tracking-wide"
-              style={{
-                textShadow: "0 4px 12px rgba(212, 175, 55, 0.3), 0 0 40px rgba(212, 175, 55, 0.15)",
+            {/* Shimmer Effect */}
+            <motion.div
+              animate={{ x: ["-100%", "200%"] }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "linear",
+                repeatDelay: 2,
               }}
-            >
-              MAGRASS HORTOLÂNDIA
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+            />
+
+            <Trophy className="w-5 h-5 text-[#D4AF37] relative z-10" aria-hidden="true" />
+            <span className="text-[11px] sm:text-xs font-bold text-[#D4AF37] uppercase tracking-[0.25em] relative z-10">
+              27x Destaque Nacional Magrass
+            </span>
+            <Sparkles className="w-4 h-4 text-[#F4D03F]/60 relative z-10" aria-hidden="true" />
+          </motion.div>
+
+          {/* Headline com Tipografia Otimizada */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="font-serif text-[clamp(2.5rem,7.5vw,5.5rem)] leading-[1.05] text-white mb-6 sm:mb-10 tracking-[-0.02em] max-w-[18ch] sm:max-w-none px-2 sm:px-0"
+          >
+            {hero.headline}
+            <br className="hidden sm:block" />
+            <span className="relative inline-block mt-2 sm:mt-3">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#F4D03F] to-[#D4AF37] italic font-bold">
+                {hero.headlineHighlight}
+              </span>
+
+              {/* Underline Animado Refinado */}
+              <motion.svg
+                viewBox="0 0 300 20"
+                className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-2 sm:h-4"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 1.2, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                aria-hidden="true"
+              >
+                <defs>
+                  <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.3" />
+                    <stop offset="50%" stopColor="#F4D03F" stopOpacity="0.6" />
+                    <stop offset="100%" stopColor="#D4AF37" stopOpacity="0.3" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M5 12 Q 150 6 295 12"
+                  fill="none"
+                  stroke="url(#goldGradient)"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                />
+              </motion.svg>
             </span>
           </motion.h1>
 
-          {/* Espaço - 32px */}
-          <div className="h-8" aria-hidden="true" />
+          {/* Subheadline com Contraste Melhorado */}
+          <div className="max-w-xl md:max-w-3xl mx-auto mb-12 sm:mb-16 px-4 sm:px-0">
+            <AnimatedTextGenerate
+              text={hero.subheadline}
+              className="text-center"
+              textClassName="text-slate-300/90 text-base sm:text-lg md:text-xl lg:text-2xl font-light leading-relaxed tracking-wide"
+              highlightWords={["ciência", "tecnologia", "personalizado", "autoestima"]}
+              highlightClassName="text-[#D4AF37] font-semibold"
+            />
+          </div>
 
-          {/* Subtítulo com Negrito Estratégico */}
-          <motion.p
-            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
-            className="max-w-3xl mx-auto text-white/90 text-base sm:text-lg lg:text-xl leading-relaxed mb-12 px-4 sm:px-0"
-            style={{ fontFamily: "Inter, sans-serif" }}
-          >
-            <strong className="font-semibold">Ciência, tecnologia</strong> e acompanhamento{" "}
-            <strong className="font-semibold">personalizado</strong> para você conquistar o corpo e
-            a saúde que sempre desejou.
-          </motion.p>
-
-          {/* Espaço - 48px */}
-          <div className="h-12" aria-hidden="true" />
-
-          {/* Botão CTA Otimizado - Logo WhatsApp Oficial */}
+          {/* CTA Premium com Estados Visuais */}
           <motion.div
-            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
-            className="w-full sm:w-auto mb-4"
+            transition={{ delay: 0.9, duration: 0.6 }}
+            className="w-full sm:w-auto px-4 sm:px-0 mb-2"
           >
             <a
-              href={getWhatsAppLink("Olá! Gostaria de agendar uma avaliação gratuita")}
+              href={getWhatsAppLink("Olá! Desejo iniciar minha transformação com a Magrass.")}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Agendar avaliação gratuita pelo WhatsApp"
-              className="group relative inline-flex items-center justify-center gap-3 w-full sm:w-auto px-12 py-5 bg-gradient-to-r from-[#D4AF37] to-[#F4D03F] text-[#063838] rounded-full font-semibold text-lg transition-all duration-300 hover:-translate-y-1 active:translate-y-0 overflow-hidden"
-              style={{
-                boxShadow: "0 4px 20px rgba(212, 175, 55, 0.4)",
-                fontFamily: "Inter, sans-serif",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = "0 8px 30px rgba(212, 175, 55, 0.6)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = "0 4px 20px rgba(212, 175, 55, 0.4)";
-              }}
+              className="group relative inline-flex items-center justify-center gap-3 w-full sm:w-auto px-10 sm:px-16 py-5 sm:py-7 bg-gradient-to-r from-[#D4AF37] to-[#F4D03F] text-[#063838] rounded-full font-bold text-base sm:text-xl shadow-[0_20px_60px_rgba(212,175,55,0.4)] hover:shadow-[0_30px_80px_rgba(212,175,55,0.6)] transition-all duration-500 hover:-translate-y-1.5 active:scale-[0.98] overflow-hidden min-h-[60px] sm:min-h-[72px]"
             >
-              {/* Efeito de Brilho no Hover */}
-              <span
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"
+              {/* Shine Effect no Hover */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+              </div>
+
+              <MessageCircle
+                className="w-6 h-6 sm:w-7 sm:h-7 relative z-10 group-hover:rotate-12 transition-transform duration-300"
                 aria-hidden="true"
               />
-
-              {/* Logo WhatsApp SVG Oficial */}
-              <svg
-                className="w-6 h-6 flex-shrink-0 relative z-10"
-                viewBox="0 0 24 24"
-                fill="currentColor"
+              <span className="tracking-tight uppercase relative z-10 font-black">{hero.cta}</span>
+              <ArrowRight
+                className="w-5 h-5 sm:w-6 sm:h-6 relative z-10 group-hover:translate-x-2 transition-transform duration-300"
                 aria-hidden="true"
-              >
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-              </svg>
-
-              <span className="relative z-10 font-semibold">Agendar Avaliação Gratuita</span>
+              />
             </a>
           </motion.div>
 
-          {/* Badge de Urgência Otimizado */}
-          <motion.div
-            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
+          {/* Texto auxiliar do CTA */}
+          <motion.p
+            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.8, ease: [0.4, 0, 0.2, 1] }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm"
-            role="status"
-            style={{ fontFamily: "Inter, sans-serif" }}
+            transition={{ delay: 1.2 }}
+            className="text-slate-400 text-xs sm:text-sm mb-16 sm:mb-20"
           >
-            <Zap
-              className="w-4 h-4 text-[#F4D03F]"
-              aria-hidden="true"
-              style={{ animation: "pulse 2s ease-in-out infinite" }}
-            />
-            <span className="text-white/90 text-sm font-medium">Resposta em até 2 minutos</span>
-          </motion.div>
+            ✨ Atendimento em até 2 minutos
+          </motion.p>
 
-          {/* Espaço Flexível */}
-          <div className="flex-1 min-h-[8vh]" aria-hidden="true" />
-
-          {/* Trust Indicators - Versão Simplificada */}
+          {/* Trust Bar Premium Redesenhada - GRID 4 COLUNAS RESTAURADO */}
           <motion.div
-            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1, ease: [0.4, 0, 0.2, 1] }}
-            className="mt-16 grid grid-cols-1 xs:grid-cols-3 gap-8 xs:gap-6 max-w-4xl w-full"
+            transition={{ delay: 1.4, duration: 0.8 }}
+            className="w-full max-w-6xl"
           >
-            {/* Padrão ANVISA */}
-            <div className="flex flex-col items-center group">
-              <div className="relative mb-3">
-                <ShieldCheck
-                  className="text-[#D4AF37] w-10 h-10 relative z-10 group-hover:scale-110 transition-transform duration-300"
-                  aria-hidden="true"
-                />
-                <div
-                  className="absolute inset-0 bg-[#D4AF37] blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-300"
-                  aria-hidden="true"
-                />
+            {/* Linha Decorativa Superior */}
+            <div className="relative mb-10 sm:mb-12">
+              <div className="absolute inset-0 flex items-center" aria-hidden="true">
+                <div className="w-full border-t border-white/10" />
               </div>
-              <p className="text-white font-semibold text-sm">Padrão ANVISA</p>
-              <p className="text-white/60 text-xs mt-1">Segurança Total</p>
+              <div className="relative flex justify-center">
+                <div className="bg-primary px-4">
+                  <div className="flex items-center gap-2 text-[#D4AF37]/60">
+                    <div className="w-2 h-2 bg-[#D4AF37] rounded-full animate-pulse" />
+                    <span className="text-[10px] uppercase tracking-[0.3em] font-bold">
+                      Excelência Comprovada
+                    </span>
+                    <div className="w-2 h-2 bg-[#D4AF37] rounded-full animate-pulse" />
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Vidas Transformadas */}
-            <div className="flex flex-col items-center group">
-              <p className="text-[#D4AF37] text-4xl font-bold mb-2 group-hover:scale-110 transition-transform duration-300">
-                +5.000
-              </p>
-              <p className="text-white font-semibold text-sm">Vidas Transformadas</p>
-              <p className="text-white/60 text-xs mt-1">Resultados Comprovados</p>
-            </div>
+            <div className="grid grid-cols-1 xs:grid-cols-4 sm:grid-cols-4 gap-4 xs:gap-4 sm:gap-6 items-start relative">
+              {/* Divisores Verticais (Desktop) */}
+              <div
+                className="hidden xs:block absolute left-1/4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent"
+                aria-hidden="true"
+              />
+              <div
+                className="hidden xs:block absolute left-2/4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent"
+                aria-hidden="true"
+              />
+              <div
+                className="hidden xs:block absolute right-1/4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent"
+                aria-hidden="true"
+              />
 
-            {/* Unidade Premium */}
-            <div className="flex flex-col items-center group">
-              <div className="flex items-center gap-2 mb-3">
-                <Star
-                  className="text-[#D4AF37] w-8 h-8 fill-[#D4AF37] group-hover:rotate-180 transition-transform duration-500"
-                  aria-hidden="true"
-                />
-              </div>
-              <p className="text-white font-semibold text-sm">Unidade Premium</p>
-              <p className="text-white/60 text-xs mt-1">Hortolândia</p>
+              {/* Item 1: Padrão ANVISA */}
+              <motion.div
+                whileHover={{ y: -5 }}
+                transition={{ duration: 0.3 }}
+                className="flex flex-col items-center group cursor-default"
+              >
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="relative">
+                    <ShieldCheck className="text-[#D4AF37] w-7 h-7 sm:w-8 sm:h-8 relative z-10" />
+                    <div
+                      className="absolute inset-0 bg-[#D4AF37] blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500"
+                      aria-hidden="true"
+                    />
+                  </div>
+                  <p className="text-white font-bold text-lg sm:text-xl">Padrão ANVISA</p>
+                </div>
+                <p className="text-slate-500 text-[10px] sm:text-xs uppercase tracking-[0.25em] font-bold">
+                  Segurança Total
+                </p>
+              </motion.div>
+
+              {/* Item 2: 12 Toneladas Eliminadas - RESTAURADO */}
+              <motion.div
+                whileHover={{ y: -5 }}
+                transition={{ duration: 0.3 }}
+                className="flex flex-col items-center group cursor-default"
+              >
+                <p className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#F4D03F] to-[#D4AF37] font-serif text-3xl sm:text-4xl font-bold tracking-tight mb-1 group-hover:scale-110 transition-transform duration-500">
+                  +12t
+                </p>
+                <p className="text-slate-500 text-[10px] sm:text-xs uppercase tracking-[0.25em] font-bold">
+                  Peso Eliminado
+                </p>
+              </motion.div>
+
+              {/* Item 3: Vidas Transformadas */}
+              <motion.div
+                whileHover={{ y: -5 }}
+                transition={{ duration: 0.3 }}
+                className="flex flex-col items-center group cursor-default"
+              >
+                <p className="text-white font-serif text-4xl sm:text-5xl font-bold group-hover:text-[#D4AF37] transition-colors duration-500 tracking-tight mb-1">
+                  +5.000
+                </p>
+                <p className="text-slate-500 text-[10px] sm:text-xs uppercase tracking-[0.25em] font-bold">
+                  Vidas Transformadas
+                </p>
+              </motion.div>
+
+              {/* Item 4: Unidade Premium */}
+              <motion.div
+                whileHover={{ y: -5 }}
+                transition={{ duration: 0.3 }}
+                className="flex flex-col items-center group cursor-default"
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <Star className="text-[#D4AF37] w-5 h-5 sm:w-6 sm:h-6 fill-[#D4AF37] group-hover:rotate-180 transition-transform duration-700" />
+                  <p className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#F4D03F] font-serif text-3xl sm:text-4xl font-bold uppercase tracking-tighter">
+                    Premium
+                  </p>
+                </div>
+                <p className="text-slate-500 text-[10px] sm:text-xs uppercase tracking-[0.25em] font-bold">
+                  Unidade Hortolândia
+                </p>
+              </motion.div>
             </div>
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll Indicator Simplificado */}
+      {/* Scroll Indicator Refinado */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 hidden lg:flex flex-col items-center pointer-events-none"
-        aria-hidden="true"
+        transition={{ delay: 2 }}
+        className="absolute bottom-8 sm:bottom-12 left-1/2 -translate-x-1/2 z-20 hidden lg:flex flex-col items-center pointer-events-none"
       >
         <motion.div
-          animate={{ y: [0, 8, 0] }}
+          animate={{ y: [0, 12, 0] }}
           transition={{
-            duration: 2,
+            duration: 2.5,
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="w-6 h-10 border-2 border-[#D4AF37]/40 rounded-full flex items-start justify-center p-2"
+          className="flex flex-col items-center gap-4"
         >
-          <motion.div
-            animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"
-          />
+          <span className="text-[9px] text-[#D4AF37] uppercase tracking-[0.6em] font-black opacity-60">
+            Role para Explorar
+          </span>
+          <div className="relative w-6 h-10 border-2 border-[#D4AF37]/40 rounded-full flex items-start justify-center p-2">
+            <motion.div
+              animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"
+            />
+          </div>
         </motion.div>
       </motion.div>
-
-      {/* Keyframes CSS para animação pulse */}
-      <style jsx>{`
-        @keyframes pulse {
-          0%,
-          100% {
-            opacity: 1;
-          }
-          50% {
-            opacity: 0.6;
-          }
-        }
-      `}</style>
     </section>
   );
 };
