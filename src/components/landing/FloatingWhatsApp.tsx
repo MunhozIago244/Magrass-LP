@@ -201,94 +201,275 @@ export const FloatingWhatsApp = () => {
             className="mb-4 bg-white rounded-3xl shadow-2xl border border-[#D4AF37]/20 w-[calc(100vw-2rem)] sm:w-96 max-h-[70vh] sm:max-h-[600px] flex flex-col overflow-hidden"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-[#131842] to-[#1f2554] p-4 text-white relative overflow-hidden">
-              <div className="absolute inset-0 bg-[#D4AF37]/10 opacity-30" />
-              <div className="relative flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#D4AF37] to-[#F4D03F] rounded-full flex items-center justify-center shadow-lg">
-                  <Sparkles className="w-6 h-6 text-[#131842]" />
-                </div>
+            <div className="bg-gradient-to-br from-[#131842] via-[#1f2554] to-[#131842] p-5 text-white relative overflow-hidden">
+              {/* Animated background overlay */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/20 via-transparent to-[#F4D03F]/20"
+                animate={{
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+                style={{ backgroundSize: "200% 200%" }}
+              />
+
+              {/* Sparkle particles */}
+              <div className="absolute inset-0 opacity-30">
+                {[...Array(6)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-1 h-1 bg-[#D4AF37] rounded-full"
+                    style={{
+                      left: `${Math.random() * 100}%`,
+                      top: `${Math.random() * 100}%`,
+                    }}
+                    animate={{
+                      opacity: [0, 1, 0],
+                      scale: [0, 1.5, 0],
+                    }}
+                    transition={{
+                      duration: 2 + Math.random() * 2,
+                      repeat: Infinity,
+                      delay: Math.random() * 2,
+                    }}
+                  />
+                ))}
+              </div>
+
+              <div className="relative flex items-center gap-4">
+                <motion.div
+                  animate={{
+                    rotate: [0, 5, -5, 0],
+                    scale: [1, 1.05, 1],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="w-14 h-14 bg-gradient-to-br from-[#D4AF37] via-[#F4D03F] to-[#D4AF37] rounded-full flex items-center justify-center shadow-2xl shadow-[#D4AF37]/50 relative"
+                >
+                  {/* Glow ring */}
+                  <motion.div
+                    className="absolute inset-0 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#F4D03F]"
+                    animate={{
+                      scale: [1, 1.3, 1],
+                      opacity: [0.5, 0, 0.5],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                    }}
+                  />
+                  <Sparkles className="w-7 h-7 text-[#131842] relative z-10" />
+                </motion.div>
+
                 <div className="flex-1">
-                  <p className="font-bold text-sm">Assistente Magrass</p>
-                  <p className="text-xs text-emerald-300 flex items-center gap-1.5">
+                  <motion.p
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="font-bold text-base tracking-wide"
+                  >
+                    Assistente Magrass
+                  </motion.p>
+                  <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                    className="text-xs text-emerald-300 flex items-center gap-2 mt-1"
+                  >
                     {isOnline ? (
                       <>
-                        <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-                        Online • Resposta rápida
+                        <motion.span
+                          className="w-2.5 h-2.5 bg-emerald-400 rounded-full shadow-lg shadow-emerald-400/50"
+                          animate={{
+                            scale: [1, 1.2, 1],
+                            opacity: [1, 0.7, 1],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                          }}
+                        />
+                        <span className="font-semibold">Online • Resposta rápida</span>
                       </>
                     ) : (
                       <>
-                        <Clock className="w-3 h-3" />
-                        Fora do horário
+                        <Clock className="w-3.5 h-3.5" />
+                        <span className="font-medium">Fora do horário</span>
                       </>
                     )}
-                  </p>
+                  </motion.p>
                 </div>
               </div>
             </div>
 
             {/* Chat Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-slate-50 to-white">
-              {messages.map((msg) => (
-                <div
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-slate-50 via-white to-slate-50">
+              {messages.map((msg, msgIndex) => (
+                <motion.div
                   key={msg.id}
+                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{
+                    type: "spring",
+                    damping: 20,
+                    stiffness: 300,
+                    delay: msgIndex * 0.1,
+                  }}
                   className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
                 >
-                  <div className={`max-w-[80%] ${msg.sender === "user" ? "order-1" : ""}`}>
-                    <div
-                      className={`rounded-2xl px-4 py-2.5 ${
+                  <div className={`max-w-[85%] ${msg.sender === "user" ? "order-1" : ""}`}>
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      className={`relative rounded-2xl px-5 py-3 ${
                         msg.sender === "user"
-                          ? "bg-gradient-to-r from-[#D4AF37] to-[#F4D03F] text-[#131842] font-medium"
-                          : "bg-white border border-gray-200 text-gray-800 shadow-sm"
+                          ? "bg-gradient-to-br from-[#D4AF37] via-[#F4D03F] to-[#D4AF37] text-[#131842] font-medium shadow-lg shadow-[#D4AF37]/30"
+                          : "bg-white/80 backdrop-blur-sm border border-[#131842]/10 text-gray-800 shadow-lg shadow-slate-200/50"
                       }`}
                     >
-                      <p className="text-sm leading-relaxed">{msg.text}</p>
-                    </div>
+                      {/* Glow effect para mensagens do bot */}
+                      {msg.sender === "bot" && (
+                        <div className="absolute -inset-[1px] bg-gradient-to-r from-[#D4AF37]/20 via-[#F4D03F]/20 to-[#D4AF37]/20 rounded-2xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
+                      )}
+
+                      <p className="text-sm leading-relaxed relative z-10">{msg.text}</p>
+                    </motion.div>
 
                     {/* Opções de resposta rápida */}
                     {msg.options && msg.sender === "bot" && (
-                      <div className="flex flex-col gap-2 mt-3">
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 }}
+                        className="flex flex-col gap-2.5 mt-4"
+                      >
                         {msg.options.map((option, idx) => (
-                          <button
+                          <motion.button
                             key={idx}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{
+                              delay: 0.4 + idx * 0.1,
+                              type: "spring",
+                              stiffness: 200,
+                            }}
+                            whileHover={{
+                              scale: 1.03,
+                              x: 5,
+                              boxShadow: "0 10px 25px -5px rgba(212, 175, 55, 0.3)",
+                            }}
+                            whileTap={{ scale: 0.97 }}
                             onClick={() => handleUserChoice(option.label, option.message)}
-                            className="text-left px-4 py-2.5 bg-white hover:bg-gradient-to-r hover:from-[#D4AF37]/10 hover:to-[#F4D03F]/10 border border-[#D4AF37]/30 hover:border-[#D4AF37]/50 rounded-xl text-sm font-medium text-[#131842] transition-all duration-300 hover:shadow-md hover:-translate-y-0.5"
+                            className="relative text-left px-5 py-3 bg-white/90 backdrop-blur-sm hover:bg-gradient-to-r hover:from-[#D4AF37]/15 hover:to-[#F4D03F]/15 border-2 border-[#D4AF37]/20 hover:border-[#D4AF37]/60 rounded-xl text-sm font-semibold text-[#131842] transition-all duration-300 shadow-md hover:shadow-xl overflow-hidden group"
                           >
-                            {option.label}
-                          </button>
+                            {/* Shimmer effect no hover */}
+                            <motion.div
+                              className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent"
+                              whileHover={{ translateX: "200%" }}
+                              transition={{ duration: 0.6 }}
+                            />
+
+                            {/* Conteúdo do botão */}
+                            <span className="relative z-10 flex items-center gap-2">
+                              <span className="text-xl">{option.label.split(" ")[0]}</span>
+                              <span className="flex-1">
+                                {option.label.split(" ").slice(1).join(" ")}
+                              </span>
+                              <motion.span
+                                className="text-[#D4AF37] text-lg"
+                                initial={{ x: 0 }}
+                                whileHover={{ x: 4 }}
+                                transition={{ type: "spring", stiffness: 400 }}
+                              >
+                                →
+                              </motion.span>
+                            </span>
+                          </motion.button>
                         ))}
-                      </div>
+                      </motion.div>
                     )}
 
-                    <p className="text-[10px] text-gray-400 mt-1 px-1">
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.2 }}
+                      className="text-[10px] text-gray-400 mt-2 px-1 font-medium"
+                    >
                       {msg.timestamp.toLocaleTimeString("pt-BR", {
                         hour: "2-digit",
                         minute: "2-digit",
                       })}
-                    </p>
+                    </motion.p>
                   </div>
-                </div>
+                </motion.div>
               ))}
 
               {/* Typing indicator */}
               {isTyping && (
-                <div className="flex justify-start">
-                  <div className="bg-white border border-gray-200 rounded-2xl px-4 py-3 shadow-sm">
-                    <div className="flex gap-1">
-                      <span
-                        className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                        style={{ animationDelay: "0ms" }}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  className="flex justify-start"
+                >
+                  <div className="relative bg-gradient-to-br from-white to-slate-50 border-2 border-[#D4AF37]/20 rounded-2xl px-6 py-4 shadow-xl shadow-[#D4AF37]/10">
+                    {/* Glow animado */}
+                    <motion.div
+                      className="absolute -inset-[2px] bg-gradient-to-r from-[#D4AF37]/30 via-[#F4D03F]/30 to-[#D4AF37]/30 rounded-2xl blur-md -z-10"
+                      animate={{
+                        opacity: [0.3, 0.6, 0.3],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    />
+
+                    <div className="flex gap-2 items-center">
+                      <motion.span
+                        className="w-2.5 h-2.5 bg-gradient-to-r from-[#D4AF37] to-[#F4D03F] rounded-full"
+                        animate={{
+                          scale: [1, 1.3, 1],
+                          opacity: [1, 0.5, 1],
+                        }}
+                        transition={{
+                          duration: 1,
+                          repeat: Infinity,
+                          delay: 0,
+                        }}
                       />
-                      <span
-                        className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                        style={{ animationDelay: "150ms" }}
+                      <motion.span
+                        className="w-2.5 h-2.5 bg-gradient-to-r from-[#D4AF37] to-[#F4D03F] rounded-full"
+                        animate={{
+                          scale: [1, 1.3, 1],
+                          opacity: [1, 0.5, 1],
+                        }}
+                        transition={{
+                          duration: 1,
+                          repeat: Infinity,
+                          delay: 0.2,
+                        }}
                       />
-                      <span
-                        className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                        style={{ animationDelay: "300ms" }}
+                      <motion.span
+                        className="w-2.5 h-2.5 bg-gradient-to-r from-[#D4AF37] to-[#F4D03F] rounded-full"
+                        animate={{
+                          scale: [1, 1.3, 1],
+                          opacity: [1, 0.5, 1],
+                        }}
+                        transition={{
+                          duration: 1,
+                          repeat: Infinity,
+                          delay: 0.4,
+                        }}
                       />
                     </div>
                   </div>
-                </div>
+                </motion.div>
               )}
 
               <div ref={messagesEndRef} />
