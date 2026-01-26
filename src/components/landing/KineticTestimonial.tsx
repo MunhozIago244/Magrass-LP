@@ -12,7 +12,7 @@ const testimonials = [
     result: "12kg em 3 meses",
     text: "Nunca imaginei que conseguiria esses resultados sem cirurgia. A equipe é maravilhosa!",
     rating: 5,
-    image: "https://i.pravatar.cc/150?img=1"
+    image: "https://i.pravatar.cc/150?img=1",
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ const testimonials = [
     result: "Autoestima renovada",
     text: "O atendimento personalizado fez toda diferença. Me sinto outra pessoa!",
     rating: 5,
-    image: "https://i.pravatar.cc/150?img=5"
+    image: "https://i.pravatar.cc/150?img=5",
   },
   {
     id: 3,
@@ -32,8 +32,8 @@ const testimonials = [
     result: "8cm de cintura",
     text: "Resultado surpreendente! Tratamento indolor e equipe super atenciosa.",
     rating: 5,
-    image: "https://i.pravatar.cc/150?img=9"
-  }
+    image: "https://i.pravatar.cc/150?img=9",
+  },
 ];
 
 const KineticTestimonials = () => {
@@ -56,17 +56,19 @@ const KineticTestimonials = () => {
             </span>
             <span className="h-px w-8 bg-[#C5A059]" aria-hidden="true"></span>
           </div>
-          
-          <h2 className="
+
+          <h2
+            className="
             text-3xl sm:text-4xl lg:text-5xl 
-            font-serif text-[#131842] 
+            font-serif text-primary 
             mb-4 
             leading-tight
             px-4
-          ">
+          "
+          >
             Histórias de <span className="text-[#C5A059] italic">Transformação</span>
           </h2>
-          
+
           <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto px-4">
             Veja o que nossos clientes têm a dizer sobre sua jornada conosco
           </p>
@@ -144,12 +146,10 @@ const TestimonialCard = ({ testimonial }) => (
         loading="lazy"
       />
       <div className="flex-1 min-w-0">
-        <h4 className="font-bold text-[#131842] text-base sm:text-lg truncate">
+        <h4 className="font-bold text-primary text-base sm:text-lg truncate">
           {testimonial.name}, {testimonial.age}
         </h4>
-        <p className="text-[#C5A059] text-sm font-medium">
-          {testimonial.treatment}
-        </p>
+        <p className="text-[#C5A059] text-sm font-medium">{testimonial.treatment}</p>
         <div className="flex gap-1 mt-1">
           {[...Array(testimonial.rating)].map((_, i) => (
             <Star key={i} className="w-4 h-4 fill-[#C5A059] text-[#C5A059]" />
@@ -167,13 +167,15 @@ const TestimonialCard = ({ testimonial }) => (
     </div>
 
     {/* Result Badge */}
-    <div className="
+    <div
+      className="
       inline-flex items-center gap-2 
       px-4 py-2 
       bg-[#C5A059]/10 
       rounded-full 
       border border-[#C5A059]/20
-    ">
+    "
+    >
       <span className="text-[#C5A059] font-bold text-xs sm:text-sm">
         Resultado: {testimonial.result}
       </span>

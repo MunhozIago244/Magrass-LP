@@ -11,11 +11,10 @@ const HeroSection = () => {
   const shouldReduceMotion = useReducedMotion() ?? false;
 
   return (
-    <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0d0f2e] via-[#131842] to-[#1a1d4a]">
-      
+    <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#032221] via-[#1AAFAC] to-[#0A605F]">
       {/* Background com overlay aprimorado */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#131842]/98 via-[#131842]/90 to-[#131842]/95 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#032221]/98 via-[#0A605F]/90 to-[#032221]/95 z-10" />
         <motion.div
           initial={shouldReduceMotion ? { opacity: 0.5 } : { scale: 1.15, opacity: 0 }}
           animate={{ scale: 1, opacity: 0.5 }}
@@ -26,7 +25,7 @@ const HeroSection = () => {
             src="/assets/images/hero-section-image.webp"
             alt="Magrass Hortolândia - Ambiente Premium"
             fetchPriority="high"
-            loading="eager" 
+            loading="eager"
             decoding="sync"
             className="w-full h-full object-cover"
           />
@@ -35,49 +34,48 @@ const HeroSection = () => {
 
       {/* Luzes de Ambientação Duplas */}
       <div className="absolute inset-0 z-10 pointer-events-none" aria-hidden="true">
-        <motion.div 
-          animate={{ 
+        <motion.div
+          animate={{
             scale: [1, 1.2, 1],
-            opacity: [0.15, 0.25, 0.15] 
+            opacity: [0.15, 0.25, 0.15],
           }}
-          transition={{ 
-            duration: 8, 
-            repeat: Infinity,
-            ease: "easeInOut" 
-          }}
-          className="absolute top-1/4 -left-20 w-72 sm:w-[32rem] h-72 sm:h-[32rem] bg-[#C5A059]/20 rounded-full blur-[120px]" 
-        />
-        <motion.div 
-          animate={{ 
-            scale: [1, 1.15, 1],
-            opacity: [0.1, 0.2, 0.1] 
-          }}
-          transition={{ 
-            duration: 10, 
+          transition={{
+            duration: 8,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: 2
           }}
-          className="absolute bottom-1/4 -right-20 w-64 sm:w-96 h-64 sm:h-96 bg-[#C5A059]/15 rounded-full blur-[100px]" 
+          className="absolute top-1/4 -left-20 w-72 sm:w-[32rem] h-72 sm:h-[32rem] bg-[#C5A059]/20 rounded-full blur-[120px]"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.15, 1],
+            opacity: [0.1, 0.2, 0.1],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2,
+          }}
+          className="absolute bottom-1/4 -right-20 w-64 sm:w-96 h-64 sm:h-96 bg-[#C5A059]/15 rounded-full blur-[100px]"
         />
       </div>
 
       {/* Grid Pattern Sutil */}
-      <div 
-        className="absolute inset-0 z-10 opacity-[0.015]" 
+      <div
+        className="absolute inset-0 z-10 opacity-[0.015]"
         style={{
           backgroundImage: `
             linear-gradient(rgba(197, 160, 89, 0.1) 1px, transparent 1px),
             linear-gradient(90deg, rgba(197, 160, 89, 0.1) 1px, transparent 1px)
           `,
-          backgroundSize: '50px 50px'
+          backgroundSize: "50px 50px",
         }}
         aria-hidden="true"
       />
 
       <div className="container relative z-20 px-4 sm:px-6 lg:px-8 py-12 sm:py-16 flex flex-col items-center justify-center min-h-[100dvh]">
         <div className="flex flex-col items-center text-center w-full max-w-7xl mx-auto">
-          
           {/* Badge Superior Premium */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -87,16 +85,16 @@ const HeroSection = () => {
           >
             {/* Shimmer Effect */}
             <motion.div
-              animate={{ x: ['-100%', '200%'] }}
-              transition={{ 
-                duration: 3, 
-                repeat: Infinity, 
+              animate={{ x: ["-100%", "200%"] }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
                 ease: "linear",
-                repeatDelay: 2 
+                repeatDelay: 2,
               }}
               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
             />
-            
+
             <Trophy className="w-5 h-5 text-[#C5A059] relative z-10" aria-hidden="true" />
             <span className="text-[11px] sm:text-xs font-bold text-[#C5A059] uppercase tracking-[0.25em] relative z-10">
               27x Destaque Nacional Magrass
@@ -117,7 +115,7 @@ const HeroSection = () => {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C5A059] via-[#d4b068] to-[#C5A059] italic font-bold">
                 {hero.headlineHighlight}
               </span>
-              
+
               {/* Underline Animado Refinado */}
               <motion.svg
                 viewBox="0 0 300 20"
@@ -134,12 +132,12 @@ const HeroSection = () => {
                     <stop offset="100%" stopColor="#C5A059" stopOpacity="0.3" />
                   </linearGradient>
                 </defs>
-                <path 
-                  d="M5 12 Q 150 6 295 12" 
-                  fill="none" 
-                  stroke="url(#goldGradient)" 
-                  strokeWidth="3" 
-                  strokeLinecap="round" 
+                <path
+                  d="M5 12 Q 150 6 295 12"
+                  fill="none"
+                  stroke="url(#goldGradient)"
+                  strokeWidth="3"
+                  strokeLinecap="round"
                 />
               </motion.svg>
             </span>
@@ -173,17 +171,15 @@ const HeroSection = () => {
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
               </div>
-              
-              <MessageCircle 
-                className="w-6 h-6 sm:w-7 sm:h-7 relative z-10 group-hover:rotate-12 transition-transform duration-300" 
-                aria-hidden="true" 
+
+              <MessageCircle
+                className="w-6 h-6 sm:w-7 sm:h-7 relative z-10 group-hover:rotate-12 transition-transform duration-300"
+                aria-hidden="true"
               />
-              <span className="tracking-tight uppercase relative z-10 font-black">
-                {hero.cta}
-              </span>
-              <ArrowRight 
-                className="w-5 h-5 sm:w-6 sm:h-6 relative z-10 group-hover:translate-x-2 transition-transform duration-300" 
-                aria-hidden="true" 
+              <span className="tracking-tight uppercase relative z-10 font-black">{hero.cta}</span>
+              <ArrowRight
+                className="w-5 h-5 sm:w-6 sm:h-6 relative z-10 group-hover:translate-x-2 transition-transform duration-300"
+                aria-hidden="true"
               />
             </a>
           </motion.div>
@@ -199,7 +195,7 @@ const HeroSection = () => {
           </motion.p>
 
           {/* Trust Bar Premium Redesenhada */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.4, duration: 0.8 }}
@@ -211,10 +207,12 @@ const HeroSection = () => {
                 <div className="w-full border-t border-white/10" />
               </div>
               <div className="relative flex justify-center">
-                <div className="bg-[#131842] px-4">
+                <div className="bg-primary px-4">
                   <div className="flex items-center gap-2 text-[#C5A059]/60">
                     <div className="w-2 h-2 bg-[#C5A059] rounded-full animate-pulse" />
-                    <span className="text-[10px] uppercase tracking-[0.3em] font-bold">Excelência Comprovada</span>
+                    <span className="text-[10px] uppercase tracking-[0.3em] font-bold">
+                      Excelência Comprovada
+                    </span>
                     <div className="w-2 h-2 bg-[#C5A059] rounded-full animate-pulse" />
                   </div>
                 </div>
@@ -222,13 +220,18 @@ const HeroSection = () => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-8 items-start relative">
-              
               {/* Divisores Verticais (Desktop) */}
-              <div className="hidden sm:block absolute left-1/3 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent" aria-hidden="true" />
-              <div className="hidden sm:block absolute right-1/3 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent" aria-hidden="true" />
+              <div
+                className="hidden sm:block absolute left-1/3 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent"
+                aria-hidden="true"
+              />
+              <div
+                className="hidden sm:block absolute right-1/3 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent"
+                aria-hidden="true"
+              />
 
               {/* Item 1: Padrão ANVISA */}
-              <motion.div 
+              <motion.div
                 whileHover={{ y: -5 }}
                 transition={{ duration: 0.3 }}
                 className="flex flex-col items-center group cursor-default"
@@ -236,15 +239,20 @@ const HeroSection = () => {
                 <div className="flex items-center gap-3 mb-2">
                   <div className="relative">
                     <ShieldCheck className="text-[#C5A059] w-7 h-7 sm:w-8 sm:h-8 relative z-10" />
-                    <div className="absolute inset-0 bg-[#C5A059] blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500" aria-hidden="true" />
+                    <div
+                      className="absolute inset-0 bg-[#C5A059] blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500"
+                      aria-hidden="true"
+                    />
                   </div>
                   <p className="text-white font-bold text-lg sm:text-xl">Padrão ANVISA</p>
                 </div>
-                <p className="text-slate-500 text-[10px] sm:text-xs uppercase tracking-[0.25em] font-bold">Segurança Total</p>
+                <p className="text-slate-500 text-[10px] sm:text-xs uppercase tracking-[0.25em] font-bold">
+                  Segurança Total
+                </p>
               </motion.div>
 
               {/* Item 2: Vidas Transformadas */}
-              <motion.div 
+              <motion.div
                 whileHover={{ y: -5 }}
                 transition={{ duration: 0.3 }}
                 className="flex flex-col items-center group cursor-default"
@@ -252,11 +260,13 @@ const HeroSection = () => {
                 <p className="text-white font-serif text-4xl sm:text-5xl font-bold group-hover:text-[#C5A059] transition-colors duration-500 tracking-tight mb-1">
                   +5.000
                 </p>
-                <p className="text-slate-500 text-[10px] sm:text-xs uppercase tracking-[0.25em] font-bold">Vidas Transformadas</p>
+                <p className="text-slate-500 text-[10px] sm:text-xs uppercase tracking-[0.25em] font-bold">
+                  Vidas Transformadas
+                </p>
               </motion.div>
 
               {/* Item 3: Unidade Premium */}
-              <motion.div 
+              <motion.div
                 whileHover={{ y: -5 }}
                 transition={{ duration: 0.3 }}
                 className="flex flex-col items-center group cursor-default"
@@ -267,16 +277,17 @@ const HeroSection = () => {
                     Premium
                   </p>
                 </div>
-                <p className="text-slate-500 text-[10px] sm:text-xs uppercase tracking-[0.25em] font-bold">Unidade Hortolândia</p>
+                <p className="text-slate-500 text-[10px] sm:text-xs uppercase tracking-[0.25em] font-bold">
+                  Unidade Hortolândia
+                </p>
               </motion.div>
-
             </div>
           </motion.div>
         </div>
       </div>
 
       {/* Scroll Indicator Refinado */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2 }}
@@ -284,10 +295,10 @@ const HeroSection = () => {
       >
         <motion.div
           animate={{ y: [0, 12, 0] }}
-          transition={{ 
-            duration: 2.5, 
+          transition={{
+            duration: 2.5,
             repeat: Infinity,
-            ease: "easeInOut" 
+            ease: "easeInOut",
           }}
           className="flex flex-col items-center gap-4"
         >
@@ -297,10 +308,10 @@ const HeroSection = () => {
           <div className="relative w-6 h-10 border-2 border-[#C5A059]/40 rounded-full flex items-start justify-center p-2">
             <motion.div
               animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}
-              transition={{ 
-                duration: 2, 
+              transition={{
+                duration: 2,
                 repeat: Infinity,
-                ease: "easeInOut" 
+                ease: "easeInOut",
               }}
               className="w-1.5 h-1.5 bg-[#C5A059] rounded-full"
             />

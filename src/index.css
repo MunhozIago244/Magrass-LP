@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -18,12 +18,12 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 20%;
 
-    /* Azul Magrass Premium - #131842 */
-    --primary: 232 56% 17%; 
-    --primary-foreground: 40 14% 97%;
+    /* Nova Cor Primária - #1AAFAC */
+    --primary: 172 82% 58%;
+    --primary-foreground: 0 0% 10%;
 
     /* Dourado Premium - #C5A059 */
-    --secondary: 40 47% 56%; 
+    --secondary: 40 47% 56%;
     --secondary-foreground: 232 56% 17%;
 
     --accent: 40 47% 56%;
@@ -42,7 +42,12 @@
     --radius: 0.75rem;
 
     /* Custom Properties - Efeitos de Luxo */
-    --gold-gradient: linear-gradient(135deg, hsl(40 47% 56%) 0%, hsl(45 55% 65%) 50%, hsl(40 47% 56%) 100%);
+    --gold-gradient: linear-gradient(
+      135deg,
+      hsl(40 47% 56%) 0%,
+      hsl(45 55% 65%) 50%,
+      hsl(40 47% 56%) 100%
+    );
     --shadow-soft: 0 4px 20px -4px hsla(232, 56%, 17%, 0.08);
     --shadow-card: 0 8px 32px -8px hsla(232, 56%, 17%, 0.12);
     --shadow-elevated: 0 16px 48px -12px hsla(232, 56%, 17%, 0.15);
@@ -65,8 +70,8 @@
     --card-foreground: 40 14% 97%;
     --popover: 232 56% 14%;
     --popover-foreground: 40 14% 97%;
-    --primary: 40 47% 56%;
-    --primary-foreground: 232 56% 17%;
+    --primary: 172 82% 58%;
+    --primary-foreground: 0 0% 10%;
     --secondary: 232 40% 25%;
     --secondary-foreground: 40 14% 97%;
     --muted: 232 40% 20%;
@@ -86,23 +91,28 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
   }
 
   /* Títulos Magrass - Estilo Serifado Elegante */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Playfair Display", serif;
     @apply font-semibold tracking-tight;
   }
 }
 
 @layer utilities {
   .font-display {
-    font-family: 'Playfair Display', serif;
+    font-family: "Playfair Display", serif;
   }
 
   .font-body {
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
   }
 
   .text-gradient-gold {

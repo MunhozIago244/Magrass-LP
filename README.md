@@ -74,18 +74,19 @@ Landing page de **alta conversão** desenvolvida para a **Magrass Hortolândia**
 
 ### 🎯 Seções da Landing Page
 
-| Seção | Descrição | Status |
-|-------|-----------|--------|
-| **Hero** | Headline impactante com CTA estratégico + efeito typewriter | ✅ |
-| **Serviços** | Grid responsivo de procedimentos com animações em cascata | ✅ |
-| **Benefícios** | Cards informativos sobre diferenciais da clínica | ✅ |
-| **CTA Final** | Call-to-action com indicador de status online em tempo real | ✅ |
-| **Footer** | Informações completas de contato, localização e redes sociais | ✅ |
-| **WhatsApp Float** | Botão flutuante com preview de chat e status online | ✅ |
+| Seção              | Descrição                                                     | Status |
+| ------------------ | ------------------------------------------------------------- | ------ |
+| **Hero**           | Headline impactante com CTA estratégico + efeito typewriter   | ✅     |
+| **Serviços**       | Grid responsivo de procedimentos com animações em cascata     | ✅     |
+| **Benefícios**     | Cards informativos sobre diferenciais da clínica              | ✅     |
+| **CTA Final**      | Call-to-action com indicador de status online em tempo real   | ✅     |
+| **Footer**         | Informações completas de contato, localização e redes sociais | ✅     |
+| **WhatsApp Float** | Botão flutuante com preview de chat e status online           | ✅     |
 
 ### 🔥 Recursos Avançados
 
 #### Performance & Otimização
+
 - ✅ **Lazy Loading Inteligente** - Componentes carregados sob demanda
 - ✅ **Code Splitting Automático** - Bundle otimizado por rotas
 - ✅ **Tree-shaking de Ícones** - Importação granular (economiza ~80KB)
@@ -94,6 +95,7 @@ Landing page de **alta conversão** desenvolvida para a **Magrass Hortolândia**
 - ✅ **Intersection Observer** - Animações ativadas apenas no viewport
 
 #### Funcionalidades de Negócio
+
 - ✅ Detecção automática de horário comercial
 - ✅ Integração direta com WhatsApp Business
 - ✅ Rastreamento de eventos (Google Analytics ready)
@@ -101,6 +103,7 @@ Landing page de **alta conversão** desenvolvida para a **Magrass Hortolândia**
 - ✅ Open Graph e Twitter Cards configurados
 
 #### Experiência do Usuário
+
 - ✅ Animações de entrada suaves e não-intrusivas
 - ✅ Feedback visual em todas as interações
 - ✅ Estados de loading e erro tratados
@@ -112,27 +115,28 @@ Landing page de **alta conversão** desenvolvida para a **Magrass Hortolândia**
 ## ⚡ Performance & Otimizações
 
 ### 📊 Métricas Lighthouse
-Performance:    96/100  ⚡
-Accessibility:  98/100  ♿
+
+Performance: 96/100 ⚡
+Accessibility: 98/100 ♿
 Best Practices: 100/100 ✅
-SEO:            100/100 🔍
-PWA:            N/A     📱 (Planejado v2.0)
+SEO: 100/100 🔍
+PWA: N/A 📱 (Planejado v2.0)
 
 ### 🎯 Core Web Vitals
 
-| Métrica | Valor | Classificação |
-|---------|-------|---------------|
-| **LCP** (Largest Contentful Paint) | 1.2s | ✅ Bom |
-| **FID** (First Input Delay) | 8ms | ✅ Bom |
-| **CLS** (Cumulative Layout Shift) | 0.02 | ✅ Bom |
-| **FCP** (First Contentful Paint) | 0.9s | ✅ Bom |
-| **TTI** (Time to Interactive) | 2.1s | ✅ Bom |
+| Métrica                            | Valor | Classificação |
+| ---------------------------------- | ----- | ------------- |
+| **LCP** (Largest Contentful Paint) | 1.2s  | ✅ Bom        |
+| **FID** (First Input Delay)        | 8ms   | ✅ Bom        |
+| **CLS** (Cumulative Layout Shift)  | 0.02  | ✅ Bom        |
+| **FCP** (First Contentful Paint)   | 0.9s  | ✅ Bom        |
+| **TTI** (Time to Interactive)      | 2.1s  | ✅ Bom        |
 
 ### 🛠️ Estratégias de Otimização Implementadas
 
 #### 1. Lazy Loading Inteligente
 
-```typescript
+````typescript
 // Componentes críticos (above the fold) - carregamento imediato
 import HeroSection from '@/components/landing/HeroSection';
 import Header from '@/components/landing/Header';
@@ -175,7 +179,7 @@ Resultado: Bundle inicial reduzido em ~40%, tempo de carregamento melhorado em 3
     "tailwind-merge": "^2.5.4"
   }
 }
-```
+````
 
 ### Dev Tools
 
@@ -329,13 +333,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#131842',    // Navy
-        secondary: '#C5A059',  // Gold
-        accent: '#F9F9F9',     // Light Gray
-      }
-    }
-  }
-}
+        primary: "#131842", // Navy
+        secondary: "#C5A059", // Gold
+        accent: "#F9F9F9", // Light Gray
+      },
+    },
+  },
+};
 ```
 
 ### Configuração do Site
@@ -349,7 +353,7 @@ export const CONFIG = {
     address: "Rua Exemplo, 123 - Hortolândia, SP",
     phone: "(19) 99999-9999",
     whatsapp: "5519999999999",
-    instagram: "https://instagram.com/magrasshortolandia"
+    instagram: "https://instagram.com/magrasshortolandia",
   },
   // ... mais configurações
 };
@@ -452,12 +456,14 @@ chore: Tarefas de manutenção
 ## 🗺️ Roadmap
 
 ### ✅ Fase 1 - MVP (Completo)
+
 - [x] Landing page responsiva
 - [x] Integração WhatsApp
 - [x] Animações Framer Motion
 - [x] SEO básico
 
 ### 🚧 Fase 2 - Em Desenvolvimento
+
 - [ ] Sistema de agendamento online
 - [ ] Blog/Área de conteúdo
 - [ ] Galeria de antes/depois
@@ -465,6 +471,7 @@ chore: Tarefas de manutenção
 - [ ] Integração com Instagram API
 
 ### 📅 Fase 3 - Futuro
+
 - [ ] Dashboard administrativo
 - [ ] CRM integrado
 - [ ] Sistema de fidelidade
@@ -502,6 +509,77 @@ Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) par
 - [Lucide Icons](https://lucide.dev/)
 - [Shadcn UI](https://ui.shadcn.com/)
 - [Vercel](https://vercel.com/)
+
+---
+
+## 👨‍💻 Guia de Desenvolvimento
+
+### Configuração de Ambiente Local
+
+```bash
+# 1. Clone o repositório
+git clone https://github.com/MunhozIago244/Magrass-LP.git
+cd Magrass-LP
+
+# 2. Instale as dependências
+npm install
+
+# 3. Configure variáveis de ambiente
+cp .env.example .env.local
+
+# 4. Inicie o servidor
+npm run dev
+```
+
+### Padrões de Código
+
+- **Nomes de arquivos**: `kebab-case` para componentes, `camelCase` para hooks
+- **Nomes de componentes**: `PascalCase` (React convention)
+- **Imports**: Use path aliases (`@/components`, `@/lib`, etc)
+- **Type safety**: Sempre defina tipos com TypeScript
+- **Documentação**: JSDoc para funções e componentes complexos
+
+### Quality Assurance
+
+```bash
+# Linting (ESLint + TypeScript)
+npm run lint
+
+# Testes unitários
+npm run test
+npm run test:watch
+
+# Build de produção
+npm run build
+
+# Verificar bundle size
+npm run build  # Gera relatório em dist/stats.html
+```
+
+### Pre-commit Hooks
+
+Este projeto usa **Husky** e **Lint-staged** para garantir qualidade:
+
+```bash
+# Automaticamente ao fazer commit:
+# 1. Valida código com ESLint
+# 2. Formata com Prettier
+# 3. Bloqueia commit se houver erros
+```
+
+### Contribuindo
+
+1. Crie uma branch para sua feature: `git checkout -b feature/AmazingFeature`
+2. Commit suas mudanças: `git commit -m 'Add AmazingFeature'`
+3. Push para a branch: `git push origin feature/AmazingFeature`
+4. Abra um Pull Request
+
+### Reportando Issues
+
+- Use labels apropriadas (bug, enhancement, documentation)
+- Inclua passos para reproduzir
+- Adicione screenshots/vídeos se possível
+- Descreva o comportamento esperado vs. atual
 
 ---
 

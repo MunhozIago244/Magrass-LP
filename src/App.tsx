@@ -8,7 +8,7 @@ import { reportWebVitals } from "@/lib/analytics";
 import { HelmetProvider } from "react-helmet-async";
 
 // PWA: Hook para gerenciar atualizações do Service Worker
-import { useRegisterSW } from 'virtual:pwa-register/react';
+import { useRegisterSW } from "virtual:pwa-register/react";
 import { toast } from "sonner";
 
 // Lazy Loading Granular para reduzir o bundle inicial
@@ -20,9 +20,10 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       staleTime: 1000 * 60 * 5, // 5 minutos de dados "frescos"
-      retry: (failureCount, error: any) => {
+      retry: (failureCount, error: unknown) => {
         // Não repete se for erro de autenticação ou 404
-        if (error?.status === 404 || error?.status === 401) return false;
+        const err = error as { status?: number };
+        if (err?.status === 404 || err?.status === 401) return false;
         return failureCount < 2;
       },
       refetchOnWindowFocus: false,
@@ -39,15 +40,15 @@ const App = () => {
   // 2. Registro e Ciclo de Vida do PWA/Service Worker
   const {
     offlineReady: [offlineReady, setOfflineReady],
-    needRefresh: [needRefresh, setNeedRefresh],
+    needRefresh: [needRefresh],
     updateServiceWorker,
   } = useRegisterSW({
-    onRegistered(r) {
-      console.log('[PWA] Service Worker registrado com sucesso.');
+    onRegistered(_r) {
+      console.log("[PWA] Service Worker registrado com sucesso.");
       // Verifica atualizações a cada horar && setInterval(() => r.update(), 60 * 60 * 1000);
     },
     onRegisterError(error) {
-      console.error('[PWA] Erro no registro do SW:', error);
+      console.error("[PWA] Erro no registro do SW:", error);
     },
   });
 
@@ -75,14 +76,9 @@ const App = () => {
         <TooltipProvider delayDuration={300}>
           {/* Provedores de Feedback Visual */}
           <Toaster />
-          <Sonner 
-            position="top-right" 
-            closeButton 
-            richColors 
-            expand={false}
-          />
+          <Sonner position="top-right" closeButton richColors expand={false} />
 
-          <BrowserRouter 
+          <BrowserRouter
             future={{
               v7_startTransition: true,
               v7_relativeSplatPath: true,

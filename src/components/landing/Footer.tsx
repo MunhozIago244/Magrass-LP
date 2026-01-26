@@ -3,7 +3,6 @@ import { CONFIG, getWhatsAppLink } from "@/config/siteConfig";
 import { MapPin, MessageCircle, Instagram, Clock, ShieldCheck, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { memo } from "react";
-import { cn } from "@/lib/utils";
 
 const Footer = () => {
   const { company, footer } = CONFIG;
@@ -13,11 +12,11 @@ const Footer = () => {
 
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { duration: 0.6, staggerChildren: 0.1 } 
-    }
+      transition: { duration: 0.6, staggerChildren: 0.1 },
+    },
   };
 
   return (
@@ -27,7 +26,7 @@ const Footer = () => {
       <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gold/5 blur-[100px] rounded-full pointer-events-none" />
 
       <div className="container mx-auto px-6 relative z-10">
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -38,22 +37,36 @@ const Footer = () => {
           <div className="space-y-8">
             <div className="space-y-4">
               <h3 className="font-serif text-3xl text-gold font-bold tracking-tighter">
-                {footer.brand.split(' ')[0]}
-                <span className="text-white ml-1 font-light italic">{footer.brand.split(' ')[1]}</span>
+                {footer.brand.split(" ")[0]}
+                <span className="text-white ml-1 font-light italic">
+                  {footer.brand.split(" ")[1]}
+                </span>
               </h3>
               <p className="text-slate-400 text-sm leading-relaxed max-w-[260px] font-light italic">
-                A maior rede de emagrecimento saudável e estética de elite da América Latina, agora em Hortolândia.
+                A maior rede de emagrecimento saudável e estética de elite da América Latina, agora
+                em Hortolândia.
               </p>
             </div>
-            
+
             <div className="flex items-center gap-4">
               {[
-                { icon: Instagram, href: company.instagram, label: "Instagram" },
-                { icon: MessageCircle, href: getWhatsAppLink(), label: "WhatsApp" }
+                {
+                  icon: Instagram,
+                  href: company.instagram,
+                  label: "Instagram",
+                },
+                {
+                  icon: MessageCircle,
+                  href: getWhatsAppLink(),
+                  label: "WhatsApp",
+                },
               ].map((social, i) => (
                 <motion.a
                   key={i}
-                  whileHover={{ scale: 1.1, backgroundColor: "rgba(197, 160, 89, 0.1)" }}
+                  whileHover={{
+                    scale: 1.1,
+                    backgroundColor: "rgba(197, 160, 89, 0.1)",
+                  }}
                   whileTap={{ scale: 0.95 }}
                   href={social.href}
                   target="_blank"
@@ -68,8 +81,10 @@ const Footer = () => {
 
           {/* Coluna 2: Localização Estratégica */}
           <div className="space-y-6">
-            <h4 className="text-gold font-black text-[10px] uppercase tracking-[0.3em]">Onde Estamos</h4>
-            <motion.a 
+            <h4 className="text-gold font-black text-[10px] uppercase tracking-[0.3em]">
+              Onde Estamos
+            </h4>
+            <motion.a
               href={mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -92,7 +107,9 @@ const Footer = () => {
 
           {/* Coluna 3: Atendimento Boutique */}
           <div className="space-y-6">
-            <h4 className="text-gold font-black text-[10px] uppercase tracking-[0.3em]">Atendimento</h4>
+            <h4 className="text-gold font-black text-[10px] uppercase tracking-[0.3em]">
+              Atendimento
+            </h4>
             <div className="flex items-start gap-4">
               <div className="mt-1 p-3 rounded-2xl bg-white/5 text-slate-400">
                 <Clock size={20} />
@@ -112,12 +129,16 @@ const Footer = () => {
 
           {/* Coluna 4: Selo de Autoridade */}
           <div className="flex flex-col lg:items-end justify-start">
-            <motion.div 
+            <motion.div
               whileHover={{ scale: 1.02 }}
               className="p-8 border border-gold/20 rounded-[2.5rem] bg-gradient-to-br from-white/[0.05] to-transparent backdrop-blur-md text-center lg:text-right relative overflow-hidden group"
             >
               <div className="absolute top-0 right-0 w-20 h-20 bg-gold/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:bg-gold/10 transition-colors" />
-              <ShieldCheck className="text-gold mb-4 mx-auto lg:ml-auto lg:mr-0" size={40} strokeWidth={1.5} />
+              <ShieldCheck
+                className="text-gold mb-4 mx-auto lg:ml-auto lg:mr-0"
+                size={40}
+                strokeWidth={1.5}
+              />
               <p className="text-white font-serif italic text-xl mb-1 italic">Padrão Ouro</p>
               <p className="text-gold/60 text-[9px] font-black uppercase tracking-[0.2em] leading-relaxed">
                 Clínica Certificada <br /> Tecnologia ANVISA
@@ -139,8 +160,8 @@ const Footer = () => {
 
           <div className="flex gap-8">
             {["Privacidade", "Termos"].map((item) => (
-              <a 
-                key={item} 
+              <a
+                key={item}
                 href={`#${item.toLowerCase()}`}
                 className="text-[10px] text-slate-500 uppercase tracking-[0.2em] font-bold hover:text-gold transition-colors relative group"
               >

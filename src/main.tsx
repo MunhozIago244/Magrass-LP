@@ -1,8 +1,8 @@
 // src/main.tsx
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import './index.css';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./index.css";
 
 // ============================================================
 // CONFIGURAÇÃO DE AMBIENTE
@@ -30,8 +30,8 @@ const logger = {
 // ============================================================
 function setupGlobalErrorHandlers(): void {
   // Erros não capturados
-  window.addEventListener('error', (event) => {
-    logger.error('Erro não tratado:', {
+  window.addEventListener("error", (event) => {
+    logger.error("Erro não tratado:", {
       message: event.message,
       filename: event.filename,
       lineno: event.lineno,
@@ -40,8 +40,8 @@ function setupGlobalErrorHandlers(): void {
   });
 
   // Promises rejeitadas não tratadas
-  window.addEventListener('unhandledrejection', (event) => {
-    logger.error('Promise rejeitada não tratada:', event.reason);
+  window.addEventListener("unhandledrejection", (event) => {
+    logger.error("Promise rejeitada não tratada:", event.reason);
   });
 }
 
@@ -50,19 +50,19 @@ function setupGlobalErrorHandlers(): void {
 // ============================================================
 async function registerServiceWorker(): Promise<void> {
   // Só registra em produção ou se explicitamente habilitado
-  if (!('serviceWorker' in navigator)) {
-    logger.warn('Service Worker não suportado neste navegador');
+  if (!("serviceWorker" in navigator)) {
+    logger.warn("Service Worker não suportado neste navegador");
     return;
   }
 
   try {
-    const { registerSW } = await import('virtual:pwa-register');
+    const { registerSW } = await import("virtual:pwa-register");
 
     const updateSW = registerSW({
       immediate: false, // Não força atualização imediata
 
       onRegisteredSW(swUrl, registration) {
-        logger.info('Service Worker registrado:', swUrl);
+        logger.info("Service Worker registrado:", swUrl);
 
         // Verifica atualizações periodicamente (a cada hora)
         if (registration && isProd) {
@@ -78,7 +78,7 @@ async function registerServiceWorker(): Promise<void> {
       onNeedRefresh() {
         // UI mais elegante que confirm() nativo
         const shouldUpdate = window.confirm(
-          '🚀 Nova versão disponível!\n\nDeseja atualizar agora?'
+          "🚀 Nova versão disponível!\n\nDeseja atualizar agora?"
         );
 
         if (shouldUpdate) {
@@ -87,50 +87,24 @@ async function registerServiceWorker(): Promise<void> {
       },
 
       onOfflineReady() {
-        logger.info('✅ App disponível offline');
+        logger.info("✅ App disponível offline");
 
         // Notificação visual opcional (não intrusiva)
-        if (isProd && 'Notification' in window && Notification.permission === 'granted') {
-          new Notification('Magrass', {
-            body: 'App pronto para uso offline!',
-            icon: '/favicon.svg',
+        if (isProd && "Notification" in window && Notification.permission === "granted") {
+          new Notification("Magrass", {
+            body: "App pronto para uso offline!",
+            icon: "/favicon.svg",
           });
         }
       },
 
       onRegisterError(error) {
-        logger.error('Falha ao registrar Service Worker:', error);
+        logger.error("Falha ao registrar Service Worker:", error);
       },
     });
   } catch (error) {
     // Falha silenciosa - PWA é enhancement, não requisito
-    logger.warn('PWA não disponível:', error);
-  }
-}
-
-// ============================================================
-// WEB VITALS (MÉTRICAS DE PERFORMANCE)
-// ============================================================
-async function reportWebVitals(): Promise<void> {
-  if (!isProd) return;
-
-  try {
-    const { onCLS, onINP, onFCP, onLCP, onTTFB } = await import('web-vitals');
-
-    const sendToAnalytics = (metric: { name: string; value: number; id: string }) => {
-      logger.info(`[Vitals] ${metric.name}:`, metric.value.toFixed(2));
-      
-      // Exemplo: enviar para endpoint customizado
-      // navigator.sendBeacon('/api/vitals', JSON.stringify(metric));
-    };
-
-    onCLS(sendToAnalytics);   // Cumulative Layout Shift
-    onINP(sendToAnalytics);   // Interaction to Next Paint (substitui FID)
-    onFCP(sendToAnalytics);   // First Contentful Paint
-    onLCP(sendToAnalytics);   // Largest Contentful Paint
-    onTTFB(sendToAnalytics);  // Time to First Byte
-  } catch {
-    // web-vitals é opcional
+    logger.warn("PWA não disponível:", error);
   }
 }
 
@@ -138,7 +112,7 @@ async function reportWebVitals(): Promise<void> {
 // RENDERIZAÇÃO DO APP
 // ============================================================
 function renderApp(): void {
-  const rootElement = document.getElementById('root');
+  const rootElement = document.getElementById("root");
 
   // Validação crítica
   if (!rootElement) {
@@ -149,7 +123,7 @@ function renderApp(): void {
 
   // Evita renderização dupla em HMR
   if (rootElement.hasChildNodes() && isDev) {
-    logger.warn('Root já possui conteúdo, pulando renderização duplicada');
+    logger.warn("Root já possui conteúdo, pulando renderização duplicada");
     return;
   }
 
@@ -161,7 +135,7 @@ function renderApp(): void {
     </React.StrictMode>
   );
 
-  logger.info(`App iniciado em modo ${isDev ? 'desenvolvimento' : 'produção'}`);
+  logger.info(`App iniciado em modo ${isDev ? "desenvolvimento" : "produção"}`);
 }
 
 // ============================================================
@@ -177,21 +151,11 @@ async function bootstrap(): Promise<void> {
   // 3. Registra SW após renderização (não bloqueia)
   registerServiceWorker();
 
-  // 4. Inicia coleta de métricas
-  reportWebVitals();
-
   // 5. Marca como totalmente carregado
   if (isProd) {
-    window.addEventListener('load', () => {
-      // Remove splash screen se existir
-      const splash = document.getElementById('splash-screen');
-      if (splash) {
-        splash.style.opacity = '0';
-        setTimeout(() => splash.remove(), 300);
-      }
-
+    window.addEventListener("load", () => {
       // Performance mark para debug
-      performance.mark('app-fully-loaded');
+      performance.mark("app-fully-loaded");
     });
   }
 }

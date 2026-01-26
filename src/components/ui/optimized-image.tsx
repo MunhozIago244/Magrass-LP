@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
@@ -34,9 +34,7 @@ export function OptimizedImage({
         {...props}
       />
       {/* Placeholder de carregamento (Skeleton) */}
-      {!loaded && (
-        <div className="absolute inset-0 animate-pulse bg-slate-200" />
-      )}
+      {!loaded && <div className="absolute inset-0 animate-pulse bg-slate-200" />}
     </div>
   );
 }

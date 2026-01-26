@@ -2,7 +2,7 @@
 
 import React, { memo, useRef } from "react";
 import { cn } from "@/lib/utils";
-import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
+import { Star, Quote, ChevronRight } from "lucide-react";
 
 interface Testimonial {
   name: string;
@@ -62,7 +62,7 @@ const TestimonialCard = ({
 /**
  * Linha de Scroll Horizontal Independente
  */
-const ScrollRow = ({ data, reverse = false }: { data: Testimonial[], reverse?: boolean }) => {
+const ScrollRow = ({ data, reverse = false }: { data: Testimonial[]; reverse?: boolean }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // Inverte a ordem dos dados para a segunda linha se solicitado
@@ -99,7 +99,7 @@ export const AnimatedTestimonials = ({
   const secondRow = data.slice(half);
 
   return (
-    <section 
+    <section
       className={cn(
         "relative w-full bg-magrass-blue overflow-hidden py-24",
         // Sombras de profundidade nas bordas
@@ -119,9 +119,9 @@ export const AnimatedTestimonials = ({
             </h2>
           </div>
           <div className="hidden md:flex gap-4 mb-2">
-             <span className="text-white/30 text-[10px] uppercase tracking-widest font-bold items-center flex gap-2">
-               Arraste para explorar <ChevronRight size={14} className="animate-pulse" />
-             </span>
+            <span className="text-white/30 text-[10px] uppercase tracking-widest font-bold items-center flex gap-2">
+              Arraste para explorar <ChevronRight size={14} className="animate-pulse" />
+            </span>
           </div>
         </div>
       </div>
