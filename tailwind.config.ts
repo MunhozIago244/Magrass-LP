@@ -58,20 +58,27 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Identidade Visual Magrass
+        // Identidade Visual Magrass - Paleta Verde + Dourado
+        green: {
+          primary: "#0D5F5F", // Verde principal vibrante
+          dark: "#063838", // Verde escuro para gradientes
+          medium: "#0A4D4D", // Verde médio
+        },
         gold: {
-          DEFAULT: "hsl(40 47% 56%)",
-          light: "hsl(45 55% 65%)",
+          DEFAULT: "#D4AF37", // Dourado vibrante (marca)
+          light: "#F4D03F", // Dourado claro para gradientes
           dark: "hsl(38 45% 45%)",
         },
         cyan: {
-          DEFAULT: "#3CECD4", // Cor de destaque vibrante
+          DEFAULT: "#3CECD4", // Cor de destaque vibrante (secundária)
           light: "#6EF3E1",
           dark: "#2BCAB5",
         },
         magrass: {
           blue: "hsl(232 56% 17%)", // #131842
           cyan: "#3CECD4", // Cyan vibrante para destaques
+          green: "#0D5F5F", // Verde principal
+          gold: "#D4AF37", // Dourado marca
           offwhite: "hsl(40 14% 97%)",
           anthracite: "hsl(0 0% 20%)",
         },
