@@ -34,15 +34,55 @@ const testimonials = [
     rating: 5,
     image: "https://i.pravatar.cc/150?img=9",
   },
+  {
+    id: 4,
+    name: "Patricia Oliveira",
+    age: 38,
+    treatment: "Emagrecimento Completo",
+    result: "15kg em 4 meses",
+    text: "Transformação incrível! A Magrass mudou minha vida completamente. Recomendo demais!",
+    rating: 5,
+    image: "https://i.pravatar.cc/150?img=10",
+  },
+  {
+    id: 5,
+    name: "Carla Mendes",
+    age: 45,
+    treatment: "Redução de Medidas",
+    result: "3 manequins a menos",
+    text: "Profissionais extremamente qualificados. Cada detalhe foi pensado para meu conforto.",
+    rating: 5,
+    image: "https://i.pravatar.cc/150?img=20",
+  },
+  {
+    id: 6,
+    name: "Fernanda Lima",
+    age: 32,
+    treatment: "Modelagem Corporal",
+    result: "Corpo dos sonhos",
+    text: "Nunca me senti tão confiante! O resultado superou todas as minhas expectativas.",
+    rating: 5,
+    image: "https://i.pravatar.cc/150?img=25",
+  },
+  {
+    id: 7,
+    name: "Roberta Alves",
+    age: 36,
+    treatment: "Tratamento Intensivo",
+    result: "10kg e 12cm",
+    text: "Excelente custo-benefício! A equipe acompanha cada passo da jornada com muito carinho.",
+    rating: 5,
+    image: "https://i.pravatar.cc/150?img=30",
+  },
 ];
 
 const KineticTestimonials = () => {
   const constraintsRef = useRef(null);
 
   return (
-    <section className="py-16 sm:py-24 lg:py-32 bg-gradient-to-br from-[#0A1628] via-[#1a2844] to-[#0d1932] overflow-hidden relative">
+    <section className="py-16 sm:py-24 lg:py-32 bg-gradient-to-br from-[#E8F4F8] via-[#D4E8F1] to-[#C9E2EE] overflow-hidden relative">
       {/* Overlay decorativo com mix de cores */}
-      <div className="absolute inset-0 opacity-20" aria-hidden="true">
+      <div className="absolute inset-0 opacity-30" aria-hidden="true">
         <div className="absolute top-0 left-0 w-96 h-96 bg-[#D4AF37] rounded-full blur-[150px] mix-blend-overlay" />
         <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#3CECD4] rounded-full blur-[140px] mix-blend-overlay" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-[#F4D03F] rounded-full blur-[160px] mix-blend-overlay" />
@@ -67,7 +107,7 @@ const KineticTestimonials = () => {
           <h2
             className="
             text-3xl sm:text-4xl lg:text-5xl 
-            font-serif text-white 
+            font-serif text-[#131842] 
             mb-4 
             leading-tight
             px-4
@@ -76,7 +116,7 @@ const KineticTestimonials = () => {
             Histórias de <span className="text-[#D4AF37] italic">Transformação</span>
           </h2>
 
-          <p className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto px-4">
+          <p className="text-[#131842]/70 text-base sm:text-lg max-w-2xl mx-auto px-4">
             Veja o que nossos clientes têm a dizer sobre sua jornada conosco
           </p>
         </motion.div>
@@ -93,11 +133,11 @@ const KineticTestimonials = () => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 className="
-                  bg-gradient-to-br from-[#131842] to-[#1a2050] 
+                  bg-white/90 backdrop-blur-sm 
                   rounded-3xl 
                   p-6 
-                  shadow-[0_8px_30px_rgba(212,175,55,0.15)]
-                  border border-[#D4AF37]/20
+                  shadow-[0_8px_30px_rgba(19,24,66,0.08)]
+                  border border-[#131842]/10
                 "
               >
                 <TestimonialCard testimonial={testimonial} />
@@ -116,14 +156,14 @@ const KineticTestimonials = () => {
               <motion.div
                 key={testimonial.id}
                 className="
-                  bg-gradient-to-br from-[#131842] to-[#1a2050] 
+                  bg-white/90 backdrop-blur-sm 
                   rounded-3xl 
                   p-8 
-                  shadow-[0_8px_30px_rgba(212,175,55,0.2)]
-                  border border-[#D4AF37]/20
+                  shadow-[0_8px_30px_rgba(19,24,66,0.12)]
+                  border border-[#131842]/10
                   min-w-[350px] lg:min-w-[400px]
-                  hover:shadow-[0_12px_40px_rgba(212,175,55,0.4)]
-                  hover:border-[#D4AF37]/40
+                  hover:shadow-[0_12px_40px_rgba(212,175,55,0.25)]
+                  hover:border-[#D4AF37]/30
                   transition-all duration-300
                 "
                 whileHover={{ y: -5 }}
@@ -134,7 +174,7 @@ const KineticTestimonials = () => {
           </motion.div>
 
           {/* Hint de arrasto (apenas desktop) */}
-          <p className="hidden sm:block text-center text-xs text-slate-400 mt-4 italic">
+          <p className="hidden sm:block text-center text-xs text-[#131842]/50 mt-4 italic">
             ← Arraste para ver mais depoimentos →
           </p>
         </div>
@@ -150,11 +190,11 @@ const TestimonialCard = ({ testimonial }) => (
       <img
         src={testimonial.image}
         alt={testimonial.name}
-        className="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover flex-shrink-0 border-2 border-[#D4AF37]/30"
+        className="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover flex-shrink-0 border-2 border-[#D4AF37]/40"
         loading="lazy"
       />
       <div className="flex-1 min-w-0">
-        <h4 className="font-bold text-white text-base sm:text-lg truncate">
+        <h4 className="font-bold text-[#131842] text-base sm:text-lg truncate">
           {testimonial.name}, {testimonial.age}
         </h4>
         <p className="text-[#D4AF37] text-sm font-medium">{testimonial.treatment}</p>
@@ -169,7 +209,7 @@ const TestimonialCard = ({ testimonial }) => (
     {/* Quote */}
     <div className="relative">
       <Quote className="absolute -top-2 -left-2 w-8 h-8 text-[#D4AF37]/30" aria-hidden="true" />
-      <p className="text-slate-200 text-sm sm:text-base leading-relaxed pl-6 mb-4">
+      <p className="text-[#131842]/80 text-sm sm:text-base leading-relaxed pl-6 mb-4">
         "{testimonial.text}"
       </p>
     </div>
@@ -179,12 +219,12 @@ const TestimonialCard = ({ testimonial }) => (
       className="
       inline-flex items-center gap-2 
       px-4 py-2 
-      bg-[#D4AF37]/20 
+      bg-gradient-to-r from-[#D4AF37]/15 to-[#F4D03F]/15 
       rounded-full 
-      border border-[#D4AF37]/40
+      border border-[#D4AF37]/30
     "
     >
-      <span className="text-[#F4D03F] font-bold text-xs sm:text-sm">
+      <span className="text-[#131842] font-bold text-xs sm:text-sm">
         Resultado: {testimonial.result}
       </span>
     </div>
