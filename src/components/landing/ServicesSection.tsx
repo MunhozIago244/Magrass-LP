@@ -316,7 +316,7 @@ const ServicesSection = () => {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.5 + index * 0.1 }}
-                        className="absolute -top-2 -right-2 bg-gradient-to-br from-[#C5A059] to-[#d4b068] text-white text-[9px] font-black uppercase tracking-wider px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5"
+                        className="absolute -top-3 -left-1 bg-gradient-to-br from-[#C5A059] to-[#d4b068] text-white text-[9px] font-black uppercase tracking-wider px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5"
                       >
                         <Sparkles className="w-3 h-3" aria-hidden="true" />
                         Mais Procurado
