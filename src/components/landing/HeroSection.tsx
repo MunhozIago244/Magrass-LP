@@ -207,11 +207,11 @@ const HeroSection = () => {
                 <div className="w-full border-t border-white/10" />
               </div>
               <div className="relative flex justify-center">
-                <div className="bg-primary px-4">
+                <div className="bg-secundary px-4">
                   <div className="flex items-center gap-2 text-[#D4AF37]/60">
                     <div className="w-2 h-2 bg-[#D4AF37] rounded-full animate-pulse" />
                     <span className="text-[10px] uppercase tracking-[0.3em] font-bold">
-                      Excelência Comprovada
+                      Excelência Comprovada em Números e Resultados
                     </span>
                     <div className="w-2 h-2 bg-[#D4AF37] rounded-full animate-pulse" />
                   </div>

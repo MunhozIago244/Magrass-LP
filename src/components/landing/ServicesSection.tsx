@@ -72,11 +72,18 @@ const ServicesSection = () => {
   return (
     <section
       id="servicos"
-      className="relative py-20 sm:py-28 lg:py-36 bg-gradient-to-b from-white via-[#fafafa] to-white overflow-hidden"
+      className="relative py-20 sm:py-28 lg:py-36 bg-gradient-to-br from-[#E8F4F8] via-[#D4E8F1] to-[#C9E2EE] overflow-hidden"
     >
-      {/* Background Decorativo Aprimorado */}
+      {/* Background Decorativo com Mix de Cores */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        {/* Pattern de Pontos Animado */}
+        {/* Overlay decorativo com mix de cores */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#D4AF37] rounded-full blur-[150px] mix-blend-overlay" />
+          <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-[#3CECD4] rounded-full blur-[140px] mix-blend-overlay" />
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-[#F4D03F] rounded-full blur-[160px] mix-blend-overlay" />
+        </div>
+
+        {/* Pattern de Pontos Sutil */}
         <motion.div
           animate={{
             backgroundPosition: ["0% 0%", "100% 100%"],
@@ -87,38 +94,11 @@ const ServicesSection = () => {
             repeatType: "reverse",
             ease: "linear",
           }}
-          className="absolute inset-0 opacity-[0.04]"
+          className="absolute inset-0 opacity-[0.08]"
           style={{
-            backgroundImage: "radial-gradient(circle, #C5A059 1px, transparent 1px)",
+            backgroundImage: "radial-gradient(circle, #D4AF37 1px, transparent 1px)",
             backgroundSize: "40px 40px",
           }}
-        />
-
-        {/* Glow Effects Sutis */}
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.02, 0.05, 0.02],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-[#C5A059] rounded-full blur-[150px]"
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.15, 1],
-            opacity: [0.03, 0.06, 0.03],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 5,
-          }}
-          className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-[#131842] rounded-full blur-[140px]"
         />
       </div>
 
@@ -139,12 +119,12 @@ const ServicesSection = () => {
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="h-[2px] w-10 sm:w-14 bg-gradient-to-r from-[#C5A059] to-[#d4b068] origin-left"
+                className="h-[2px] w-10 sm:w-14 bg-gradient-to-r from-[#D4AF37] to-[#F4D03F] origin-left"
                 aria-hidden="true"
               />
-              <span className="text-[#C5A059] font-black tracking-[0.3em] text-[11px] sm:text-xs uppercase flex items-center gap-2">
+              <span className="text-[#D4AF37] font-black tracking-[0.3em] text-[11px] sm:text-xs uppercase flex items-center gap-2">
                 Expertise Magrass
-                <Star className="w-3 h-3 fill-[#C5A059]" aria-hidden="true" />
+                <Star className="w-3 h-3 fill-[#D4AF37]" aria-hidden="true" />
               </span>
             </div>
 
@@ -152,7 +132,7 @@ const ServicesSection = () => {
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-serif text-[#131842] leading-[1.08] tracking-[-0.02em] max-w-5xl">
               Protocolos de{" "}
               <span className="relative inline-block">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C5A059] via-[#d4b068] to-[#C5A059] italic font-medium">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#F4D03F] to-[#D4AF37] italic font-medium">
                   Elite
                 </span>
                 <motion.div
@@ -160,7 +140,7 @@ const ServicesSection = () => {
                   whileInView={{ scaleX: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 0.5 }}
-                  className="absolute -bottom-1 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#C5A059]/50 to-transparent origin-left"
+                  className="absolute -bottom-1 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent origin-left"
                   aria-hidden="true"
                 />
               </span>{" "}
@@ -182,12 +162,12 @@ const ServicesSection = () => {
             className="relative max-w-2xl"
           >
             <div
-              className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-[#3CECD4] via-[#3CECD4]/50 to-transparent"
+              className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-[#D4AF37] via-[#D4AF37]/50 to-transparent"
               aria-hidden="true"
             />
             <div className="flex items-start gap-4 pl-6">
               <Zap
-                className="w-5 h-5 sm:w-6 sm:h-6 text-[#3CECD4] flex-shrink-0 mt-1"
+                className="w-5 h-5 sm:w-6 sm:h-6 text-[#D4AF37] flex-shrink-0 mt-1"
                 aria-hidden="true"
               />
               <p className="text-slate-600 font-sans text-base sm:text-lg lg:text-xl leading-relaxed italic">
@@ -221,22 +201,22 @@ const ServicesSection = () => {
               >
                 {/* Glow Effect no Hover */}
                 <div
-                  className="absolute -inset-1 bg-gradient-to-br from-[#C5A059]/0 via-[#C5A059]/20 to-[#C5A059]/0 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-all duration-700"
+                  className="absolute -inset-1 bg-gradient-to-br from-[#D4AF37]/0 via-[#D4AF37]/30 to-[#D4AF37]/0 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-all duration-700"
                   aria-hidden="true"
                 />
 
-                <div className="relative flex flex-col h-full p-6 sm:p-8 bg-white rounded-2xl sm:rounded-3xl border border-gray-100 shadow-[0_8px_30px_rgba(0,0,0,0.03)] group-hover:shadow-[0_24px_60px_rgba(197,160,89,0.15)] group-hover:border-[#C5A059]/30 transition-all duration-500 group-hover:-translate-y-3 overflow-hidden">
+                <div className="relative flex flex-col h-full p-6 sm:p-8 bg-white/90 backdrop-blur-sm rounded-2xl sm:rounded-3xl border border-[#131842]/10 shadow-[0_8px_30px_rgba(19,24,66,0.08)] group-hover:shadow-[0_24px_60px_rgba(212,175,55,0.25)] group-hover:border-[#D4AF37]/30 transition-all duration-500 group-hover:-translate-y-3 overflow-hidden">
                   {/* Accent Line Top */}
                   <motion.div
                     initial={{ scaleX: 0 }}
                     whileHover={{ scaleX: 1 }}
-                    className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#C5A059] via-[#d4b068] to-[#C5A059] origin-left"
+                    className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#D4AF37] via-[#F4D03F] to-[#D4AF37] origin-left"
                     aria-hidden="true"
                   />
 
                   {/* Número do Index (Sutil) */}
                   <div
-                    className="absolute top-4 right-4 text-5xl font-serif text-[#C5A059]/5 font-bold leading-none pointer-events-none"
+                    className="absolute top-4 right-4 text-5xl font-serif text-[#D4AF37]/8 font-bold leading-none pointer-events-none"
                     aria-hidden="true"
                   >
                     {String(index + 1).padStart(2, "0")}
@@ -248,19 +228,19 @@ const ServicesSection = () => {
                       <motion.div
                         whileHover={{ rotate: [0, -10, 10, 0], scale: 1.05 }}
                         transition={{ duration: 0.5 }}
-                        className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-[#131842] to-[#1f2554] flex items-center justify-center text-[#3CECD4] shadow-lg group-hover:shadow-2xl group-hover:shadow-[#3CECD4]/30 transition-all duration-500"
+                        className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-[#131842] to-[#1f2554] flex items-center justify-center text-[#D4AF37] shadow-lg group-hover:shadow-2xl group-hover:shadow-[#D4AF37]/30 transition-all duration-500"
                       >
                         <IconComponent size={28} strokeWidth={2} aria-hidden="true" />
                       </motion.div>
 
-                      <span className="text-[10px] sm:text-[11px] font-black text-[#131842] uppercase tracking-[0.2em] px-3.5 py-2 rounded-full bg-[#3CECD4]/15 border border-[#3CECD4]/30 group-hover:bg-[#3CECD4]/25 group-hover:border-[#3CECD4]/50 transition-all">
+                      <span className="text-[10px] sm:text-[11px] font-black text-[#131842] uppercase tracking-[0.2em] px-3.5 py-2 rounded-full bg-[#D4AF37]/15 border border-[#D4AF37]/30 group-hover:bg-[#D4AF37]/25 group-hover:border-[#D4AF37]/50 transition-all">
                         {service.category || "Premium"}
                       </span>
                     </div>
 
                     {/* Body Content */}
                     <div className="flex-grow space-y-3">
-                      <h3 className="text-xl sm:text-2xl lg:text-3xl font-serif text-[#131842] leading-tight group-hover:text-[#C5A059] transition-colors duration-500">
+                      <h3 className="text-xl sm:text-2xl lg:text-3xl font-serif text-[#131842] leading-tight group-hover:text-[#D4AF37] transition-colors duration-500">
                         {service.title}
                       </h3>
 
@@ -285,11 +265,11 @@ const ServicesSection = () => {
                           aria-label={`Ver vídeo detalhado sobre ${service.title}`}
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
-                          className="flex items-center justify-center gap-2.5 w-full py-3.5 px-4 rounded-xl text-slate-400 text-[11px] font-bold hover:text-[#C5A059] hover:bg-[#C5A059]/5 transition-all border border-transparent hover:border-[#C5A059]/20 min-h-[48px] group/video"
+                          className="flex items-center justify-center gap-2.5 w-full py-3.5 px-4 rounded-xl text-slate-400 text-[11px] font-bold hover:text-[#D4AF37] hover:bg-[#D4AF37]/5 transition-all border border-transparent hover:border-[#D4AF37]/20 min-h-[48px] group/video"
                         >
                           <PlayCircle
                             size={18}
-                            className="text-[#C5A059] group-hover/video:scale-110 transition-transform"
+                            className="text-[#D4AF37] group-hover/video:scale-110 transition-transform"
                             aria-hidden="true"
                           />
                           <span className="tracking-widest uppercase">Ver Método</span>
