@@ -40,8 +40,15 @@ const KineticTestimonials = () => {
   const constraintsRef = useRef(null);
 
   return (
-    <section className="py-16 sm:py-24 lg:py-32 bg-gradient-to-b from-white to-[#F9F9F9] overflow-hidden">
-      <div className="container mx-auto px-4 sm:px-6">
+    <section className="py-16 sm:py-24 lg:py-32 bg-gradient-to-br from-[#0A1628] via-[#1a2844] to-[#0d1932] overflow-hidden relative">
+      {/* Overlay decorativo com mix de cores */}
+      <div className="absolute inset-0 opacity-20" aria-hidden="true">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-[#D4AF37] rounded-full blur-[150px] mix-blend-overlay" />
+        <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#3CECD4] rounded-full blur-[140px] mix-blend-overlay" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-[#F4D03F] rounded-full blur-[160px] mix-blend-overlay" />
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -50,26 +57,26 @@ const KineticTestimonials = () => {
           className="text-center mb-12 sm:mb-16"
         >
           <div className="flex items-center justify-center gap-2 mb-4">
-            <span className="h-px w-8 bg-[#C5A059]" aria-hidden="true"></span>
-            <span className="text-[#C5A059] font-bold tracking-[0.3em] text-xs uppercase">
+            <span className="h-px w-8 bg-[#D4AF37]" aria-hidden="true"></span>
+            <span className="text-[#D4AF37] font-bold tracking-[0.3em] text-xs uppercase">
               Depoimentos Reais
             </span>
-            <span className="h-px w-8 bg-[#C5A059]" aria-hidden="true"></span>
+            <span className="h-px w-8 bg-[#D4AF37]" aria-hidden="true"></span>
           </div>
 
           <h2
             className="
             text-3xl sm:text-4xl lg:text-5xl 
-            font-serif text-primary 
+            font-serif text-white 
             mb-4 
             leading-tight
             px-4
           "
           >
-            Histórias de <span className="text-[#C5A059] italic">Transformação</span>
+            Histórias de <span className="text-[#D4AF37] italic">Transformação</span>
           </h2>
 
-          <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto px-4">
+          <p className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto px-4">
             Veja o que nossos clientes têm a dizer sobre sua jornada conosco
           </p>
         </motion.div>
@@ -86,11 +93,11 @@ const KineticTestimonials = () => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 className="
-                  bg-white 
+                  bg-gradient-to-br from-[#131842] to-[#1a2050] 
                   rounded-3xl 
                   p-6 
-                  shadow-[0_8px_30px_rgba(0,0,0,0.06)]
-                  border border-gray-100
+                  shadow-[0_8px_30px_rgba(212,175,55,0.15)]
+                  border border-[#D4AF37]/20
                 "
               >
                 <TestimonialCard testimonial={testimonial} />
@@ -109,14 +116,15 @@ const KineticTestimonials = () => {
               <motion.div
                 key={testimonial.id}
                 className="
-                  bg-white 
+                  bg-gradient-to-br from-[#131842] to-[#1a2050] 
                   rounded-3xl 
                   p-8 
-                  shadow-[0_8px_30px_rgba(0,0,0,0.06)]
-                  border border-gray-100
+                  shadow-[0_8px_30px_rgba(212,175,55,0.2)]
+                  border border-[#D4AF37]/20
                   min-w-[350px] lg:min-w-[400px]
-                  hover:shadow-[0_12px_40px_rgba(197,160,89,0.15)]
-                  transition-shadow
+                  hover:shadow-[0_12px_40px_rgba(212,175,55,0.4)]
+                  hover:border-[#D4AF37]/40
+                  transition-all duration-300
                 "
                 whileHover={{ y: -5 }}
               >
@@ -126,7 +134,7 @@ const KineticTestimonials = () => {
           </motion.div>
 
           {/* Hint de arrasto (apenas desktop) */}
-          <p className="hidden sm:block text-center text-xs text-gray-400 mt-4 italic">
+          <p className="hidden sm:block text-center text-xs text-slate-400 mt-4 italic">
             ← Arraste para ver mais depoimentos →
           </p>
         </div>
@@ -142,17 +150,17 @@ const TestimonialCard = ({ testimonial }) => (
       <img
         src={testimonial.image}
         alt={testimonial.name}
-        className="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover flex-shrink-0"
+        className="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover flex-shrink-0 border-2 border-[#D4AF37]/30"
         loading="lazy"
       />
       <div className="flex-1 min-w-0">
-        <h4 className="font-bold text-primary text-base sm:text-lg truncate">
+        <h4 className="font-bold text-white text-base sm:text-lg truncate">
           {testimonial.name}, {testimonial.age}
         </h4>
-        <p className="text-[#C5A059] text-sm font-medium">{testimonial.treatment}</p>
+        <p className="text-[#D4AF37] text-sm font-medium">{testimonial.treatment}</p>
         <div className="flex gap-1 mt-1">
           {[...Array(testimonial.rating)].map((_, i) => (
-            <Star key={i} className="w-4 h-4 fill-[#C5A059] text-[#C5A059]" />
+            <Star key={i} className="w-4 h-4 fill-[#D4AF37] text-[#D4AF37]" />
           ))}
         </div>
       </div>
@@ -160,8 +168,8 @@ const TestimonialCard = ({ testimonial }) => (
 
     {/* Quote */}
     <div className="relative">
-      <Quote className="absolute -top-2 -left-2 w-8 h-8 text-[#C5A059]/20" aria-hidden="true" />
-      <p className="text-gray-600 text-sm sm:text-base leading-relaxed pl-6 mb-4">
+      <Quote className="absolute -top-2 -left-2 w-8 h-8 text-[#D4AF37]/30" aria-hidden="true" />
+      <p className="text-slate-200 text-sm sm:text-base leading-relaxed pl-6 mb-4">
         "{testimonial.text}"
       </p>
     </div>
@@ -171,12 +179,12 @@ const TestimonialCard = ({ testimonial }) => (
       className="
       inline-flex items-center gap-2 
       px-4 py-2 
-      bg-[#C5A059]/10 
+      bg-[#D4AF37]/20 
       rounded-full 
-      border border-[#C5A059]/20
+      border border-[#D4AF37]/40
     "
     >
-      <span className="text-[#C5A059] font-bold text-xs sm:text-sm">
+      <span className="text-[#F4D03F] font-bold text-xs sm:text-sm">
         Resultado: {testimonial.result}
       </span>
     </div>

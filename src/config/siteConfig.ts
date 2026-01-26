@@ -71,15 +71,14 @@ export const CONFIG: SiteConfig = {
     name: "Magrass",
     unit: "Hortolândia",
     phone: "5519971720443",
-    address:
-      "Rua Zacharias Costa Camargo, 25 - Remanso Campineiro, Hortolândia - SP",
+    address: "Rua Zacharias Costa Camargo, 25 - Remanso Campineiro, Hortolândia - SP",
     instagram: "https://www.instagram.com/magrass.hortolandia/",
   },
 
   hero: {
     badge: "A maior rede de emagrecimento da América Latina",
-    headline: "Realize sua transformação na",
-    headlineHighlight: "Magrass Hortolândia",
+    headline: "Realize sua transformação na Magrass",
+    headlineHighlight: "Hortolândia",
     subheadline:
       "Ciência, tecnologia e acompanhamento personalizado para você conquistar o corpo e a saúde que sempre desejou.",
     cta: "Agendar Avaliação Gratuita",
@@ -125,8 +124,7 @@ export const CONFIG: SiteConfig = {
       indications: "Gordura localizada, celulite, hidrolipoclasia.",
       contraindications:
         "Gestantes, câncer, doenças autoimunes, próteses metálicas, hipertensão/diabetes descompensadas.",
-      benefits:
-        "Lipólise induzida, permeação de ativos e melhora do contorno corporal.",
+      benefits: "Lipólise induzida, permeação de ativos e melhora do contorno corporal.",
       highlight: "Potência Máxima",
       icon: "Zap",
       // videoUrl: "https://www.instagram.com/reels/videos/1",
@@ -185,8 +183,7 @@ export const CONFIG: SiteConfig = {
       id: 7,
       category: "Bem-estar",
       title: "Drenagem Linfática",
-      description:
-        "Técnica que elimina o excesso de líquidos, toxinas e reduz o inchaço corporal.",
+      description: "Técnica que elimina o excesso de líquidos, toxinas e reduz o inchaço corporal.",
       highlight: "Fim da Retenção",
       icon: "waves",
       // videoUrl: "https://www.instagram.com/reels/videos/1",
@@ -288,8 +285,7 @@ export const CONFIG: SiteConfig = {
 };
 
 export const getWhatsAppLink = (message?: string) => {
-  const defaultMessage =
-    "Olá! Gostaria de conhecer os protocolos da Magrass Hortolândia.";
+  const defaultMessage = "Olá! Gostaria de conhecer os protocolos da Magrass Hortolândia.";
   const encodedMessage = encodeURIComponent(message || defaultMessage);
   return `https://wa.me/${CONFIG.company.phone}?text=${encodedMessage}`;
 };
