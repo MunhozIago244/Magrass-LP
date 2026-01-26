@@ -222,36 +222,40 @@ const ServicesSection = () => {
                     {String(index + 1).padStart(2, "0")}
                   </div>
 
-                  <div className="flex flex-col h-full relative z-10 space-y-6">
-                    {/* Header: Icon + Badge */}
-                    <div className="flex items-center justify-between">
+                  <div className="flex flex-col h-full relative z-10">
+                    {/* Ícone centralizado no topo */}
+                    <div className="flex flex-col items-center mb-6">
                       <motion.div
-                        whileHover={{ rotate: [0, -10, 10, 0], scale: 1.05 }}
+                        whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
                         transition={{ duration: 0.5 }}
-                        className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-[#131842] to-[#1f2554] flex items-center justify-center text-[#D4AF37] shadow-lg group-hover:shadow-2xl group-hover:shadow-[#D4AF37]/30 transition-all duration-500"
+                        className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-[#131842] to-[#1f2554] flex items-center justify-center text-[#D4AF37] shadow-lg group-hover:shadow-2xl group-hover:shadow-[#D4AF37]/30 transition-all duration-500 mb-3"
                       >
-                        <IconComponent size={28} strokeWidth={2} aria-hidden="true" />
+                        <IconComponent size={32} strokeWidth={2} aria-hidden="true" />
                       </motion.div>
 
-                      <span className="text-[10px] sm:text-[11px] font-black text-[#131842] uppercase tracking-[0.2em] px-3.5 py-2 rounded-full bg-[#D4AF37]/15 border border-[#D4AF37]/30 group-hover:bg-[#D4AF37]/25 group-hover:border-[#D4AF37]/50 transition-all">
-                        {service.category || "Premium"}
-                      </span>
+                      {/* Badge categoria (se existir) */}
+                      {service.category && (
+                        <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-black text-[#D4AF37] uppercase tracking-[0.15em] px-3 py-1.5 rounded-full bg-gradient-to-r from-[#D4AF37]/10 to-[#F4D03F]/10 border border-[#D4AF37]/30 group-hover:bg-gradient-to-r group-hover:from-[#D4AF37]/20 group-hover:to-[#F4D03F]/20 group-hover:border-[#D4AF37]/50 transition-all">
+                          <Sparkles className="w-3 h-3" aria-hidden="true" />
+                          {service.category}
+                        </span>
+                      )}
                     </div>
 
-                    {/* Body Content */}
-                    <div className="flex-grow space-y-3">
-                      <h3 className="text-xl sm:text-2xl lg:text-3xl font-serif text-[#131842] leading-tight group-hover:text-[#D4AF37] transition-colors duration-500">
+                    {/* Conteúdo */}
+                    <div className="flex-grow space-y-4 text-center">
+                      <h3 className="text-xl sm:text-2xl lg:text-2xl font-serif text-[#131842] leading-tight group-hover:text-[#D4AF37] transition-colors duration-500 px-2">
                         {service.title}
                       </h3>
 
-                      <p className="text-slate-500 text-sm sm:text-base leading-relaxed font-light italic line-clamp-4">
+                      <p className="text-slate-600/90 text-sm sm:text-base leading-relaxed font-light line-clamp-3 px-2">
                         {service.description}
                       </p>
                     </div>
 
                     {/* Divider */}
                     <div
-                      className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"
+                      className="h-px bg-gradient-to-r from-transparent via-[#D4AF37]/20 to-transparent my-5"
                       aria-hidden="true"
                     />
 
