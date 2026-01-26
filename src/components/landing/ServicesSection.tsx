@@ -285,28 +285,28 @@ const ServicesSection = () => {
                         </motion.a>
                       )}
 
-                      <MorphyButton
-                        asChild
-                        size="lg"
-                        className="w-full bg-gradient-to-r from-[#131842] to-[#1f2554] text-white rounded-2xl shadow-xl hover:shadow-2xl py-6 sm:py-7"
-                        dotClassName="bg-[#C5A059]"
+                      <a
+                        href={getWhatsAppLink(waMessage)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Agendar agora para ${service.title}`}
                       >
-                        <a
-                          href={getWhatsAppLink(waMessage)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={`Agendar agora para ${service.title}`}
-                          className="flex items-center justify-center gap-2.5 min-h-[52px] group/cta"
+                        <MorphyButton
+                          size="lg"
+                          className="w-full bg-gradient-to-r from-[#131842] to-[#1f2554] text-white rounded-2xl shadow-xl hover:shadow-2xl py-6 sm:py-7"
+                          dotClassName="bg-[#C5A059]"
                         >
-                          <span className="uppercase tracking-[0.15em] text-xs sm:text-[13px] font-black">
-                            Agendar Agora
+                          <span className="flex items-center justify-center gap-2.5 min-h-[52px] group/cta">
+                            <span className="uppercase tracking-[0.15em] text-xs sm:text-[13px] font-black">
+                              Agendar Agora
+                            </span>
+                            <ArrowRight
+                              className="w-5 h-5 group-hover/cta:translate-x-1.5 transition-transform duration-300"
+                              aria-hidden="true"
+                            />
                           </span>
-                          <ArrowRight
-                            className="w-5 h-5 group-hover/cta:translate-x-1.5 transition-transform duration-300"
-                            aria-hidden="true"
-                          />
-                        </a>
-                      </MorphyButton>
+                        </MorphyButton>
+                      </a>
                     </div>
 
                     {/* Badge de Popularidade (Opcional) */}

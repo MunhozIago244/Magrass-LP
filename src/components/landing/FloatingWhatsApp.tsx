@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { MessageCircle, X, Clock, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { getWhatsAppLink } from "@/config/siteConfig";
@@ -29,6 +29,44 @@ export const FloatingWhatsApp = () => {
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
+
+  // Simular digitação e enviar mensagem do bot
+  const sendBotMessage = (
+    text: string,
+    options?: { label: string; message: string }[],
+    delay = 1500
+  ) => {
+    setIsTyping(true);
+    setTimeout(() => {
+      setIsTyping(false);
+      const newMessage: Message = {
+        id: Date.now().toString(),
+        text,
+        sender: "bot",
+        timestamp: new Date(),
+        options,
+      };
+      setMessages((prev) => [...prev, newMessage]);
+    }, delay);
+  };
+
+  // Inicializar chat
+  const initializeChat = useCallback(() => {
+    const greeting = isOnline
+      ? "Olá! 👋 Sou a assistente virtual da Magrass Hortolândia. Como posso ajudar você hoje?"
+      : "Olá! 👋 No momento estamos fora do horário de atendimento (Seg-Sex 9h-19h, Sáb 8h-12h). Mas posso ajudar com informações básicas!";
+
+    sendBotMessage(
+      greeting,
+      [
+        { label: "📅 Agendar Avaliação", message: "Quero agendar uma avaliação gratuita" },
+        { label: "💰 Ver Preços", message: "Quero saber sobre preços e condições" },
+        { label: "✨ Procedimentos", message: "Quero conhecer os procedimentos" },
+        { label: "❓ Outras Dúvidas", message: "Tenho outras dúvidas" },
+      ],
+      800
+    );
+  }, [isOnline]);
 
   useEffect(() => {
     scrollToBottom();
@@ -69,45 +107,6 @@ export const FloatingWhatsApp = () => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen]);
-
-  // Simular digitação e enviar mensagem do bot
-  const sendBotMessage = (
-    text: string,
-    options?: { label: string; message: string }[],
-    delay = 1500
-  ) => {
-    setIsTyping(true);
-    setTimeout(() => {
-      setIsTyping(false);
-      const newMessage: Message = {
-        id: Date.now().toString(),
-        text,
-        sender: "bot",
-        timestamp: new Date(),
-        options,
-      };
-      setMessages((prev) => [...prev, newMessage]);
-    }, delay);
-  };
-
-  // Inicializar chat
-  const initializeChat = useCallback(() => {
-    const greeting = isOnline
-      ? "Olá! 👋 Sou a assistente virtual da Magrass Hortolândia. Como posso ajudar você hoje?"
-      : "Olá! 👋 No momento estamos fora do horário de atendimento (Seg-Sex 9h-19h, Sáb 8h-12h). Mas posso ajudar com informações básicas!";
-
-    sendBotMessage(
-      greeting,
-      [
-        { label: "📅 Agendar Avaliação", message: "Quero agendar uma avaliação gratuita" },
-        { label: "💰 Ver Preços", message: "Quero saber sobre preços e condições" },
-        { label: "✨ Procedimentos", message: "Quero conhecer os procedimentos" },
-        { label: "❓ Outras Dúvidas", message: "Tenho outras dúvidas" },
-      ],
-      800
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOnline, initializeChat]);
 
   // Processar escolha do usuário
   const handleUserChoice = (label: string, message: string) => {

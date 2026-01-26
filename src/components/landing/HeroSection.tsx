@@ -24,7 +24,7 @@ const HeroSection = () => {
           <img
             src="/assets/images/hero-section-image.webp"
             alt="Magrass Hortolândia - Ambiente Premium"
-            fetchPriority="high"
+            fetchpriority="high"
             loading="eager"
             decoding="sync"
             className="w-full h-full object-cover"
