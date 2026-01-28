@@ -255,15 +255,21 @@ const HeroSection = () => {
                 </p>
               </motion.div>
 
-              {/* Item 2: 12 Toneladas Eliminadas - RESTAURADO */}
+              {/* Item 2: 12 Toneladas Eliminadas */}
               <motion.div
                 whileHover={{ y: -5 }}
                 transition={{ duration: 0.3 }}
                 className="flex flex-col items-center group cursor-default"
               >
-                <p className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#F4D03F] to-[#D4AF37] font-serif text-3xl sm:text-4xl font-bold tracking-tight mb-1 group-hover:scale-110 transition-transform duration-500">
-                  +12t
-                </p>
+                <div className="relative">
+                  <p className="text-white font-serif text-4xl sm:text-5xl font-bold group-hover:text-[#D4AF37] transition-colors duration-500 tracking-tight mb-1">
+                    +12t
+                  </p>
+                  <div
+                    className="absolute inset-0 bg-[#D4AF37] blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500"
+                    aria-hidden="true"
+                  />
+                </div>
                 <p className="text-slate-500 text-[10px] sm:text-xs uppercase tracking-[0.25em] font-bold">
                   Peso Eliminado
                 </p>
@@ -275,9 +281,15 @@ const HeroSection = () => {
                 transition={{ duration: 0.3 }}
                 className="flex flex-col items-center group cursor-default"
               >
-                <p className="text-white font-serif text-4xl sm:text-5xl font-bold group-hover:text-[#D4AF37] transition-colors duration-500 tracking-tight mb-1">
-                  +5.000
-                </p>
+                <div className="relative">
+                  <p className="text-white font-serif text-4xl sm:text-5xl font-bold group-hover:text-[#D4AF37] transition-colors duration-500 tracking-tight mb-1">
+                    +5.000
+                  </p>
+                  <div
+                    className="absolute inset-0 bg-[#D4AF37] blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500"
+                    aria-hidden="true"
+                  />
+                </div>
                 <p className="text-slate-500 text-[10px] sm:text-xs uppercase tracking-[0.25em] font-bold">
                   Vidas Transformadas
                 </p>
